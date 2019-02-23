@@ -9,10 +9,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".listen.ListenActivity"></activity>
+
         <service
             android:name=".listen.play.PlayService"
             android:enabled="true"
-            android:exported="true"></service>
+            android:exported="true" />
 
         <activity android:name=".login.LoginActivity" />
         <activity android:name=".record.RecordActivity" />
