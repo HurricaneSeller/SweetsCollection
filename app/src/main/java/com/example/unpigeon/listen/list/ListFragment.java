@@ -8,13 +8,17 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 
 import com.example.unpigeon.R;
+import com.example.unpigeon.listen.ListenContract;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class ListFragment extends Fragment {
+public class ListFragment extends Fragment implements ListenContract.ListView {
+    private ImageButton mTaskButton;
+    private ImageButton mRecordButton;//cannot be reached;
 
 
     public ListFragment() {
@@ -29,4 +33,7 @@ public class ListFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_list, container, false);
     }
 
+    private void init() {
+
+    }
 }

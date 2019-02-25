@@ -1,4 +1,4 @@
-package com.example.unpigeon.main.piece;
+package com.example.unpigeon;
 
 import androidx.annotation.Nullable;
 

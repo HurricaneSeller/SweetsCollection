@@ -13,8 +13,8 @@ import android.widget.ImageButton;
 
 import com.example.unpigeon.R;
 import com.example.unpigeon.listen.ListenActivity;
-import com.example.unpigeon.main.piece.BaseAdapter;
-import com.example.unpigeon.main.piece.VoicePieceTask;
+import com.example.unpigeon.BaseAdapter;
+import com.example.unpigeon.VoicePieceTask;
 
 import java.util.ArrayList;
 import java.util.List;
