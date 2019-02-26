@@ -71,7 +71,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mTotalRecyclerView = findViewById(R.id.main_all_recycler_view);
         mExtendButton = findViewById(R.id.main_today_work_extend_button);
         mShowAllButton = findViewById(R.id.main_all_work_button);
-        mRecordButton = findViewById(R.id.main_record);
+        mRecordButton = findViewById(R.id.main_record1);
         mExtendButton.setOnClickListener(this);
         mShowAllButton.setOnClickListener(this);
         mRecordButton.setOnClickListener(this);
@@ -84,7 +84,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.main_today_work_extend_button:
                 break;
-            case R.id.main_record:
+            case R.id.main_record1:
                 Intent intent = new Intent(this, ListenActivity.class);
                 startActivity(intent);
                 break;

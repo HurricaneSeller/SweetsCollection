@@ -3,12 +3,16 @@ package com.example.unpigeon.listen.list;
 
 import android.os.Bundle;
 
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 import com.example.unpigeon.R;
 import com.example.unpigeon.listen.ListenContract;
@@ -16,10 +20,12 @@ import com.example.unpigeon.listen.ListenContract;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class ListFragment extends Fragment implements ListenContract.ListView {
+public class ListFragment extends Fragment implements ListenContract.ListView, View.OnClickListener {
+    private ListPresenter mListPresenter;
     private ImageButton mTaskButton;
     private ImageButton mRecordButton;//cannot be reached;
-
+    private RecyclerView mRecyclerView;
+    private static final String TAG = "SWEET";
 
     public ListFragment() {
         // Required empty public constructor
@@ -30,10 +36,40 @@ public class ListFragment extends Fragment implements ListenContract.ListView {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_list, container, false);
+        View root = inflater.inflate(R.layout.fragment_list, container, false);
+        init(root);
+        return root;
     }
 
-    private void init() {
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+    }
 
+    private void init(View view) {
+        mTaskButton = view.findViewById(R.id.main_task2);
+        mTaskButton.setOnClickListener(this);
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.main_task2:
+                shutdown();
+                break;
+            case R.id.fra_list_recycler_view:
+                break;
+        }
+    }
+
+    @Override
+    public void setPresenter(ListPresenter listPresenter) {
+        mListPresenter = listPresenter;
+        if (mListPresenter == null) {
+            shutdown();
+        }
+    }
+    private void shutdown() {
+        getActivity().finish();
     }
 }

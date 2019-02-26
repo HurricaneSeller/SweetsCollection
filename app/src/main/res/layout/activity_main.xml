@@ -83,5 +83,5 @@
         </RelativeLayout>
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
-    <include layout="@layout/bottom_choose_layout" />
+    <include layout="@layout/bottom_choose_layout1" />
 </RelativeLayout>

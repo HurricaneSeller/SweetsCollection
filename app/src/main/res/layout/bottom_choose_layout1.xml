@@ -5,13 +5,13 @@
     android:layout_height="80dp"
     android:layout_alignParentBottom="true">
     <ImageButton
-        android:id="@+id/main_task"
+        android:id="@+id/main_task1"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1" />
 
     <ImageButton
-        android:id="@+id/main_record"
+        android:id="@+id/main_record1"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1" />

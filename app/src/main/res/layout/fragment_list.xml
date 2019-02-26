@@ -41,5 +41,5 @@
         android:layout_below="@id/fra_list_search"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
-    <include layout="@layout/bottom_choose_layout"/>
+    <include layout="@layout/bottom_choose_layout2"/>
 </RelativeLayout>
