@@ -5,6 +5,7 @@ import android.os.Bundle;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.Log;
@@ -16,6 +17,9 @@ import android.widget.Toast;
 
 import com.example.unpigeon.R;
 import com.example.unpigeon.listen.ListenContract;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -49,6 +53,13 @@ public class ListFragment extends Fragment implements ListenContract.ListView, V
     private void init(View view) {
         mTaskButton = view.findViewById(R.id.main_task2);
         mTaskButton.setOnClickListener(this);
+        mRecyclerView = view.findViewById(R.id.fra_list_recycler_view);
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        List<RecordPiece> sample = new ArrayList<>();
+        for (int i = 0; i < 3; i++) {
+            sample.add(new RecordPiece());
+        }
+        mRecyclerView.setAdapter(new SwipeAdapter(sample));
     }
 
     @Override
