@@ -69,6 +69,7 @@ public class ListFragment extends Fragment implements ListenContract.ListView, V
             shutdown();
         }
     }
+
     private void shutdown() {
         getActivity().finish();
     }
