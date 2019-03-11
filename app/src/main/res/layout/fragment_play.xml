@@ -1,14 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:voiceView="http://schemas.android.com/apk/res-auto"
+    android:padding="15dp"
     tools:context=".listen.play.PlayFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
 
-</FrameLayout>
+        <TextView
+            android:gravity="center"
+            android:id="@+id/fra_play_text"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:layout_alignParentTop="true"
+            android:text="sample,many many words..." />
+
+        <!--<com.carlos.voiceline.mylibrary.VoiceLineView-->
+            <!--android:id="@+id/fra_play_wave"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="200dp"-->
+            <!--android:layout_below="@id/fra_play_text"-->
+            <!--voiceView:middleLineHeight="1dp"-->
+            <!--android:background="#000" />-->
+
+        <ImageView
+            android:id="@+id/fra_play_wave"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_below="@id/fra_play_text"
+            android:background="#000"/>
+        <TextView
+            android:id="@+id/fra_play_time"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_below="@id/fra_play_wave" />
+
+        <ImageButton
+            android:id="@+id/fra_play_control"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/fra_play_time"
+            android:minHeight="150dp" />
+    </RelativeLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

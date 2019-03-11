@@ -8,14 +8,13 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
-import android.widget.Toast;
 
 import com.example.unpigeon.R;
+import com.example.unpigeon.listen.ListenActivity;
 import com.example.unpigeon.listen.ListenContract;
 
 import java.util.ArrayList;
@@ -34,7 +33,6 @@ public class ListFragment extends Fragment implements ListenContract.ListView, V
     public ListFragment() {
         // Required empty public constructor
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -57,7 +55,9 @@ public class ListFragment extends Fragment implements ListenContract.ListView, V
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         List<RecordPiece> sample = new ArrayList<>();
         for (int i = 0; i < 3; i++) {
-            sample.add(new RecordPiece());
+            RecordPiece tmp = new RecordPiece();
+            tmp.setName("sample" + i);
+            sample.add(tmp);
         }
         mRecyclerView.setAdapter(new SwipeAdapter(sample));
     }
@@ -67,8 +67,6 @@ public class ListFragment extends Fragment implements ListenContract.ListView, V
         switch (v.getId()) {
             case R.id.main_task2:
                 shutdown();
-                break;
-            case R.id.fra_list_recycler_view:
                 break;
         }
     }

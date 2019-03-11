@@ -1,16 +1,20 @@
 package com.example.unpigeon.listen;
 
 public interface ListenContract {
-    interface ListView{
+    interface ListView {
         void setPresenter(com.example.unpigeon.listen.list.ListPresenter listPresenter);
     }
-    interface ListPresenter{
+
+    interface ListPresenter {
 
     }
-    interface PlayView{
 
+    interface PlayView {
+        void setPresenter(com.example.unpigeon.listen.play.PlayPresenter playPresenter);
+        void setText();
     }
-    interface PlayPresenter{
 
+    interface PlayPresenter {
+        void startPlaying();
     }
 }

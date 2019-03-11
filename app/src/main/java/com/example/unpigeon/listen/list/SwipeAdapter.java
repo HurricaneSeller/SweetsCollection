@@ -1,6 +1,7 @@
 package com.example.unpigeon.listen.list;
 
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,6 +9,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.unpigeon.R;
+import com.example.unpigeon.listen.ListenActivity;
 import com.example.unpigeon.record.RecordActivity;
 
 import java.util.List;
@@ -17,6 +19,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class SwipeAdapter extends RecyclerView.Adapter<SwipeAdapter.ViewHolder>{
     private List<RecordPiece> mRecordPieces;
+    private static final String TAG = "moanbigking";
     SwipeAdapter(List<RecordPiece> recordPieces) {
         mRecordPieces = recordPieces;
     }
@@ -35,6 +38,13 @@ public class SwipeAdapter extends RecyclerView.Adapter<SwipeAdapter.ViewHolder>{
             @Override
             public void onClick(View v) {
                 // TODO: 3/11/19 send broadcast to rename the piece
+            }
+        });
+        viewHolder.summaryView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                parent.getContext().sendBroadcast(new Intent("change-to-list"));
+                Log.d(TAG, "onClick: ");
             }
         });
         return viewHolder;

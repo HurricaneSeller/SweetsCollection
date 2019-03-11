@@ -1,5 +1,13 @@
 package com.example.unpigeon.listen.play;
 
 
-public class PlayPresenter {
+import com.example.unpigeon.listen.ListenContract;
+
+public class PlayPresenter implements ListenContract.PlayPresenter {
+    private ListenContract.PlayView mPlayView;
+
+    @Override
+    public void startPlaying() {
+
+    }
 }
