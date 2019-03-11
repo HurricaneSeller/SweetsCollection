@@ -51,11 +51,11 @@ public class PlayService extends Service {
         public void pause() {
             mMediaPlayer.pause();
         }
+    }
 
-        @Override
-        public void stop() {
-            //pause
-            mMediaPlayer.release();
-        }
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        mMediaPlayer.release();
     }
 }

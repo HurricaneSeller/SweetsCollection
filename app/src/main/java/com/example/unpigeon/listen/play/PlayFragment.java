@@ -41,6 +41,7 @@ public class PlayFragment extends Fragment implements ListenContract.PlayView, V
     private boolean isPlaying = false;
     private PlayService.MyBinder mMyBinder;
     private MyConn mMyConn;
+    private boolean isFirstPressed = true;
 
 
     public PlayFragment() {
@@ -91,14 +92,22 @@ public class PlayFragment extends Fragment implements ListenContract.PlayView, V
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.fra_play_control:
-                Intent intent = new Intent(getActivity(), PlayService.class);
-                intent.setAction("play-function");
-                intent.putExtra("binder-initialized", new Bundle());
-                mMyConn = new MyConn();
-                IntentFilter intentFilter = new IntentFilter("play-function");
-                getActivity().bindService(intent, mMyConn, Context.BIND_AUTO_CREATE);
-                getActivity().registerReceiver(mBroadcastReceiver, intentFilter);
-                break;
+                if (isFirstPressed) {
+                    Intent intent = new Intent(getActivity(), PlayService.class);
+                    intent.setAction("play-function");
+                    intent.putExtra("binder-initialized", new Bundle());
+                    mMyConn = new MyConn();
+                    IntentFilter intentFilter = new IntentFilter("play-function");
+                    getActivity().bindService(intent, mMyConn, Context.BIND_AUTO_CREATE);
+                    getActivity().registerReceiver(mBroadcastReceiver, intentFilter);
+                } else {
+                    if (isPlaying) {
+                        mMyBinder.pause();
+                    } else {
+                        mMyBinder.start();
+                    }
+                }
+                    break;
         }
     }
 
