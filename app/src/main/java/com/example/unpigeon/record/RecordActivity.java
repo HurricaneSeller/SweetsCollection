@@ -146,8 +146,8 @@ public class RecordActivity extends AppCompatActivity implements View.OnClickLis
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 voicePieceTask.setFinished(true);
-                AudioUploader uploader = new AudioUploader(Environment.getExternalStorageDirectory().getAbsolutePath()+"/"+voicePieceTask.getContent()+".wav");
-                uploader.upLode();
+                //AudioUploader uploader = new AudioUploader(Environment.getExternalStorageDirectory().getAbsolutePath()+"/"+voicePieceTask.getContent()+".wav");
+                //uploader.upLode();
                 Intent intent = new Intent(RecordActivity.this, MainActivity.class);
                 startActivity(intent);
             }
