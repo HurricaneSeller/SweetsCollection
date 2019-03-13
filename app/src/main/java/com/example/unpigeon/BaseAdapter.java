@@ -31,6 +31,8 @@ public class BaseAdapter extends RecyclerView.Adapter<BaseAdapter.ViewHolder> {
             public void onClick(View v) {
                 // with information
                 Intent intent = new Intent(parent.getContext(), RecordActivity.class);
+                int position = viewHolder.getAdapterPosition();
+                intent.putExtra("TaskInformation",mVoicePieceTasks.get(position));
                 parent.getContext().startActivity(intent);
             }
         });
