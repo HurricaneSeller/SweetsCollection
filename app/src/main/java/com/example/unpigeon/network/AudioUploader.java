@@ -56,7 +56,7 @@ public class AudioUploader {
 
                     Request request = new Request.Builder().url("http://206.189.42.213:8888//upload")
                             .header("Content-Type","application/x-www-form-urlencoded")
-                            .addHeader("Authorization","eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI1Yzg0YzhlN2M0ZjJlZjAwMWE2ZDMzYTAiLCJ1c2VybmFtZSI6ImFiYyIsImlzQWRtaW4iOmZhbHNlLCJpYXQiOjE1NTI0ODIwMjUsImV4cCI6MTU1MjU2ODQyNX0.qA3otrSYbziAO7chWp0Sa_ZLckbzXo4nOCzw3Zg5bNA")
+                            .addHeader("Authorization",token)
                             .post(RequestBody.create(MEDIA_TYPE_AUDIO, file)).build();
 
 
