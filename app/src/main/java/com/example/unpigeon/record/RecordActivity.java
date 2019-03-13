@@ -15,6 +15,8 @@ import android.widget.Toast;
 import com.example.unpigeon.R;
 import com.example.unpigeon.VoicePieceTask;
 import com.example.unpigeon.main.MainActivity;
+import com.example.unpigeon.network.AudioUploader;
+import com.example.unpigeon.utils.PcmToWavUtil;
 import com.example.unpigeon.utils.PermissionsUtil;
 
 import java.io.File;
@@ -96,7 +98,7 @@ public class RecordActivity extends AppCompatActivity implements View.OnClickLis
     }
 
     private void startRecord() {
-        File file = new File(Environment.getExternalStorageDirectory().getAbsolutePath(), voicePieceTask.getContent() + "reverseme.pcm");
+        File file = new File(Environment.getExternalStorageDirectory().getAbsolutePath(), voicePieceTask.getContent() + ".pcm");
         try {
             FileOutputStream fileOutputStream = new FileOutputStream(file);
         } catch (FileNotFoundException e) {
@@ -130,6 +132,11 @@ public class RecordActivity extends AppCompatActivity implements View.OnClickLis
     private void stopRecord() {
         mMediaRecorderTask.stop();
         isRecording = false;
+        PcmToWavUtil pcmToWavUtil = new PcmToWavUtil();
+        pcmToWavUtil.pcmToWav(Environment.getExternalStorageDirectory().getAbsolutePath()+"/"+voicePieceTask.getContent()+".pcm" ,
+                Environment.getExternalStorageDirectory().getAbsolutePath()+"/"+voicePieceTask.getContent()+".wav");
+        File file = new File(Environment.getExternalStorageDirectory().getAbsolutePath()+"/"+voicePieceTask.getContent()+".pcm");
+        file.delete();
     }
 
     private void popAlertDialog(){
@@ -139,6 +146,8 @@ public class RecordActivity extends AppCompatActivity implements View.OnClickLis
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 voicePieceTask.setFinished(true);
+                AudioUploader uploader = new AudioUploader(Environment.getExternalStorageDirectory().getAbsolutePath()+"/"+voicePieceTask.getContent()+".wav");
+                uploader.upLode();
                 Intent intent = new Intent(RecordActivity.this, MainActivity.class);
                 startActivity(intent);
             }
