@@ -103,4 +103,5 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mTodayRecyclerView.setAdapter(new BaseAdapter(mVoicePieceTasks));
         mTodayRecyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
+
 }

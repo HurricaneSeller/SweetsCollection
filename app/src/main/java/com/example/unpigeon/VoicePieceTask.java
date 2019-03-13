@@ -1,9 +1,11 @@
 package com.example.unpigeon;
 
+import java.io.Serializable;
+
 import androidx.annotation.Nullable;
 
 // bean
-public class VoicePieceTask {
+public class VoicePieceTask implements Serializable {
     private String content;
     private boolean isFinished;
 
