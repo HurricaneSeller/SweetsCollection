@@ -1,4 +1,4 @@
-package com.example.unpigeon;
+package com.example.unpigeon.utils;
 
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.unpigeon.R;
 import com.example.unpigeon.record.RecordActivity;
 import com.example.unpigeon.repository.RecordPieceEntity;
 

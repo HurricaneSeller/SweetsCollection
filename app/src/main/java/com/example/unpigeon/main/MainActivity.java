@@ -13,7 +13,7 @@ import android.widget.ImageButton;
 
 import com.example.unpigeon.R;
 import com.example.unpigeon.listen.ListenActivity;
-import com.example.unpigeon.BaseAdapter;
+import com.example.unpigeon.utils.BaseAdapter;
 import com.example.unpigeon.repository.RecordPieceEntity;
 
 import java.util.ArrayList;

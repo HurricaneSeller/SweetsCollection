@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
+// TODO: 3/20/19 use base API to finish this
 public class PermissionsUtil {
 
     private Activity context;

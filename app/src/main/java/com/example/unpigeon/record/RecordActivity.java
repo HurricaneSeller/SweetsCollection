@@ -8,7 +8,6 @@ import android.os.Environment;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Chronometer;
 import android.widget.TextView;
 
 import com.example.unpigeon.R;
@@ -37,8 +36,8 @@ public class RecordActivity extends AppCompatActivity implements View.OnClickLis
     private RhythmView mRhythmView;
     private String TAG = "moanbigking";
     private RecordPieceEntity mRecordPieceEntity;
-    private TextView mtextView;
-    private Chronometer mchronometer;
+    private TextView mContentView;
+    private TextView mTimeView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,10 +65,9 @@ public class RecordActivity extends AppCompatActivity implements View.OnClickLis
         mControlButton = findViewById(R.id.activity_record_control);
         mControlButton.setOnClickListener(this);
         mRhythmView = new RhythmView(this);
-        mtextView = findViewById(R.id.activity_record_text);
+        mContentView = findViewById(R.id.activity_record_text);
         mRecordPieceEntity = (RecordPieceEntity)getIntent().getSerializableExtra("TaskInformation");
-        mtextView.setText(mRecordPieceEntity.getContent());
-        mchronometer = findViewById(R.id.chronometer);
+        mContentView.setText(mRecordPieceEntity.getContent());
     }
 
     @Override
@@ -78,12 +76,9 @@ public class RecordActivity extends AppCompatActivity implements View.OnClickLis
             case R.id.activity_record_control:
                 if (!isRecording) {
                     startRecord();
-                    mchronometer.start();
                 } else {
                     stopRecord();
-                    mchronometer.stop();
                     popAlertDialog();
-
                 }
                 break;
         }
