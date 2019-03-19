@@ -14,7 +14,7 @@ import android.widget.ImageButton;
 import com.example.unpigeon.R;
 import com.example.unpigeon.listen.ListenActivity;
 import com.example.unpigeon.BaseAdapter;
-import com.example.unpigeon.VoicePieceTask;
+import com.example.unpigeon.repository.RecordPieceEntity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Button mShowAllButton;
     private ImageButton mTaskButton;
     private ImageButton mRecordButton;
-    private List<VoicePieceTask> mVoicePieceTasks;
+    private List<RecordPieceEntity> mRecordPieceEntities;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,16 +91,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
     private void testing() {
-        mVoicePieceTasks = new ArrayList<>();
+        mRecordPieceEntities = new ArrayList<>();
         for (int i = 0; i < 3; i++) {
             StringBuilder stringBuilder = new StringBuilder();
             stringBuilder.append("大家新年快乐");
             stringBuilder.append(i);
-            VoicePieceTask voicePieceTask = new VoicePieceTask();
-            voicePieceTask.setContent(stringBuilder.toString());
-            mVoicePieceTasks.add(voicePieceTask);
+            RecordPieceEntity recordPieceEntity = new RecordPieceEntity();
+            recordPieceEntity.setContent(stringBuilder.toString());
+            mRecordPieceEntities.add(recordPieceEntity);
         }
-        mTodayRecyclerView.setAdapter(new BaseAdapter(mVoicePieceTasks));
+        mTodayRecyclerView.setAdapter(new BaseAdapter(mRecordPieceEntities));
         mTodayRecyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
 

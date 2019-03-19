@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.unpigeon.record.RecordActivity;
+import com.example.unpigeon.repository.RecordPieceEntity;
 
 import java.util.List;
 
@@ -15,10 +16,10 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class BaseAdapter extends RecyclerView.Adapter<BaseAdapter.ViewHolder> {
-    private List<VoicePieceTask> mVoicePieceTasks;
+    private List<RecordPieceEntity> mRecordPieceEntities;
 
-    public BaseAdapter(List<VoicePieceTask> voicePieceTasks) {
-        mVoicePieceTasks = voicePieceTasks;
+    public BaseAdapter(List<RecordPieceEntity> recordPieceEntities) {
+        mRecordPieceEntities = recordPieceEntities;
     }
 
     @NonNull
@@ -32,7 +33,7 @@ public class BaseAdapter extends RecyclerView.Adapter<BaseAdapter.ViewHolder> {
                 // with information
                 Intent intent = new Intent(parent.getContext(), RecordActivity.class);
                 int position = viewHolder.getAdapterPosition();
-                intent.putExtra("TaskInformation",mVoicePieceTasks.get(position));
+                intent.putExtra("TaskInformation", mRecordPieceEntities.get(position));
                 parent.getContext().startActivity(intent);
             }
         });
@@ -41,14 +42,14 @@ public class BaseAdapter extends RecyclerView.Adapter<BaseAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        VoicePieceTask voicePieceTask = mVoicePieceTasks.get(position);
-        String content = voicePieceTask.getContent();
+        RecordPieceEntity recordPieceEntity = mRecordPieceEntities.get(position);
+        String content = recordPieceEntity.getContent();
         holder.mTitleView.setText(content);
     }
 
     @Override
     public int getItemCount() {
-        return mVoicePieceTasks == null ? 0 : mVoicePieceTasks.size();
+        return mRecordPieceEntities == null ? 0 : mRecordPieceEntities.size();
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {

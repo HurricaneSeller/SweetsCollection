@@ -10,12 +10,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Chronometer;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.unpigeon.R;
-import com.example.unpigeon.VoicePieceTask;
+import com.example.unpigeon.repository.RecordPieceEntity;
 import com.example.unpigeon.main.MainActivity;
-import com.example.unpigeon.network.AudioUploader;
 import com.example.unpigeon.utils.PcmToWavUtil;
 import com.example.unpigeon.utils.PermissionsUtil;
 
@@ -38,7 +36,7 @@ public class RecordActivity extends AppCompatActivity implements View.OnClickLis
     private boolean isRecording = false;
     private RhythmView mRhythmView;
     private String TAG = "moanbigking";
-    private VoicePieceTask voicePieceTask;
+    private RecordPieceEntity mRecordPieceEntity;
     private TextView mtextView;
     private Chronometer mchronometer;
 
@@ -69,8 +67,8 @@ public class RecordActivity extends AppCompatActivity implements View.OnClickLis
         mControlButton.setOnClickListener(this);
         mRhythmView = new RhythmView(this);
         mtextView = findViewById(R.id.activity_record_text);
-        voicePieceTask = (VoicePieceTask)getIntent().getSerializableExtra("TaskInformation");
-        mtextView.setText(voicePieceTask.getContent());
+        mRecordPieceEntity = (RecordPieceEntity)getIntent().getSerializableExtra("TaskInformation");
+        mtextView.setText(mRecordPieceEntity.getContent());
         mchronometer = findViewById(R.id.chronometer);
     }
 
@@ -92,7 +90,7 @@ public class RecordActivity extends AppCompatActivity implements View.OnClickLis
     }
 
     private void startRecord() {
-        File file = new File(Environment.getExternalStorageDirectory().getAbsolutePath(), voicePieceTask.getContent() + ".pcm");
+        File file = new File(Environment.getExternalStorageDirectory().getAbsolutePath(), mRecordPieceEntity.getContent() + ".pcm");
         try {
             FileOutputStream fileOutputStream = new FileOutputStream(file);
         } catch (FileNotFoundException e) {
@@ -127,9 +125,9 @@ public class RecordActivity extends AppCompatActivity implements View.OnClickLis
         mMediaRecorderTask.stop();
         isRecording = false;
         PcmToWavUtil pcmToWavUtil = new PcmToWavUtil();
-        pcmToWavUtil.pcmToWav(Environment.getExternalStorageDirectory().getAbsolutePath()+"/"+voicePieceTask.getContent()+".pcm" ,
-                Environment.getExternalStorageDirectory().getAbsolutePath()+"/"+voicePieceTask.getContent()+".wav");
-        File file = new File(Environment.getExternalStorageDirectory().getAbsolutePath()+"/"+voicePieceTask.getContent()+".pcm");
+        pcmToWavUtil.pcmToWav(Environment.getExternalStorageDirectory().getAbsolutePath()+"/"+ mRecordPieceEntity.getContent()+".pcm" ,
+                Environment.getExternalStorageDirectory().getAbsolutePath()+"/"+ mRecordPieceEntity.getContent()+".wav");
+        File file = new File(Environment.getExternalStorageDirectory().getAbsolutePath()+"/"+ mRecordPieceEntity.getContent()+".pcm");
         file.delete();
     }
 
@@ -139,8 +137,8 @@ public class RecordActivity extends AppCompatActivity implements View.OnClickLis
         dialog.setPositiveButton("确认", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                voicePieceTask.setFinished(true);
-                //AudioUploader uploader = new AudioUploader(Environment.getExternalStorageDirectory().getAbsolutePath()+"/"+voicePieceTask.getContent()+".wav");
+                mRecordPieceEntity.setFinished(true);
+                //AudioUploader uploader = new AudioUploader(Environment.getExternalStorageDirectory().getAbsolutePath()+"/"+mRecordPieceEntity.getContent()+".wav");
                 //uploader.upLode();
                 Intent intent = new Intent(RecordActivity.this, MainActivity.class);
                 startActivity(intent);
