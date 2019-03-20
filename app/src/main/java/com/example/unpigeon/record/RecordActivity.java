@@ -24,7 +24,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import permissions.dispatcher.NeedsPermission;
 import permissions.dispatcher.RuntimePermissions;
 
-@RuntimePermissions
+//@RuntimePermissions
 public class RecordActivity extends AppCompatActivity implements View.OnClickListener {
     private Button mControlButton;
     private String title = "sample";
@@ -81,7 +81,7 @@ public class RecordActivity extends AppCompatActivity implements View.OnClickLis
     }
 
 
-    @NeedsPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+//    @NeedsPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)
     private void startRecord() {
         File file = new File(Environment.getExternalStorageDirectory().getAbsolutePath(),
                 mRecordPieceEntity.getContent() + ".pcm");

@@ -57,7 +57,7 @@ public class BaseAdapter extends RecyclerView.Adapter<BaseAdapter.ViewHolder> {
         TextView mTitleView;
         Button mIsFinished;
         View mView;
-        public ViewHolder(@NonNull View itemView) {
+        ViewHolder(@NonNull View itemView) {
             super(itemView);
             mView = itemView.findViewById(R.id.item_piece);
             mTitleView = itemView.findViewById(R.id.piece_content);

@@ -3,7 +3,10 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="work">今日任务</string>
+    <string name="today_task">今日任务</string>
     <string name="total">全部任务</string>
     <string name="test_item">大家新年快乐</string>
+    <string name="task">任务</string>
+    <string name="wait_to_be_done">待完成</string>
+    <string name="sample_title">多人采集不同文本</string>
 </resources>

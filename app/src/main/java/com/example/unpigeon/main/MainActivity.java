@@ -24,10 +24,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private static final String TAG = "neverpigeon";
     private RecyclerView mTodayRecyclerView;
     private RecyclerView mTotalRecyclerView;
-    private Button mExtendButton;
     private Button mShowAllButton;
-    private ImageButton mTaskButton;
-    private ImageButton mRecordButton;
     private List<RecordPieceEntity> mRecordPieceEntities;
 
     @Override
@@ -49,20 +46,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private void init() {
         mTodayRecyclerView = findViewById(R.id.main_today_recycler_view);
         mTotalRecyclerView = findViewById(R.id.main_all_recycler_view);
-        mExtendButton = findViewById(R.id.main_today_work_extend_button);
         mShowAllButton = findViewById(R.id.main_all_work_button);
-        mRecordButton = findViewById(R.id.main_record1);
-        mExtendButton.setOnClickListener(this);
         mShowAllButton.setOnClickListener(this);
-        mRecordButton.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.main_all_work_button:
-                break;
-            case R.id.main_today_work_extend_button:
                 break;
             case R.id.main_record1:
                 Intent intent = new Intent(this, ListenActivity.class);
@@ -80,7 +71,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             recordPieceEntity.setContent(stringBuilder.toString());
             mRecordPieceEntities.add(recordPieceEntity);
         }
-        mTodayRecyclerView.setAdapter(new BaseAdapter(mRecordPieceEntities));
+        mTodayRecyclerView.setAdapter(new ShowAdapter(mRecordPieceEntities));
         mTodayRecyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
 
