@@ -5,15 +5,9 @@
     android:layout_height="match_parent"
     tools:context=".main.MainActivity">
 
-    <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/task_bar"
-        android:layout_width="match_parent"
-        android:layout_height="100dp" />
-
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@id/task_bar">
+        android:layout_height="match_parent">
 
         <RelativeLayout
             android:layout_width="match_parent"

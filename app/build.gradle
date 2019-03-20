@@ -27,6 +27,8 @@ dependencies {
     implementation 'com.github.mcxtzhang:SwipeDelMenuLayout:V1.3.0'
     implementation 'androidx.room:room-runtime:2.1.0-alpha05'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation "org.permissionsdispatcher:permissionsdispatcher:4.3.0"
+    annotationProcessor "org.permissionsdispatcher:permissionsdispatcher-processor:4.3.0"
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.1.2-alpha02'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0-alpha02'

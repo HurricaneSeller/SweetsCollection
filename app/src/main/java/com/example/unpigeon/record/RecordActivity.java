@@ -11,26 +11,23 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.unpigeon.R;
-import com.example.unpigeon.repository.RecordPieceEntity;
 import com.example.unpigeon.main.MainActivity;
-import com.example.unpigeon.utils.PcmToWavUtil;
-import com.example.unpigeon.utils.PermissionsUtil;
+import com.example.unpigeon.repository.RecordPieceEntity;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
+import permissions.dispatcher.NeedsPermission;
+import permissions.dispatcher.RuntimePermissions;
 
-public class RecordActivity extends AppCompatActivity implements View.OnClickListener,
-        ActivityCompat.OnRequestPermissionsResultCallback {
+@RuntimePermissions
+public class RecordActivity extends AppCompatActivity implements View.OnClickListener {
     private Button mControlButton;
     private String title = "sample";
-    private PermissionsUtil permissionsUtil;
     private MediaRecorderTask mMediaRecorderTask;
     private boolean isRecording = false;
     private RhythmView mRhythmView;
@@ -45,7 +42,6 @@ public class RecordActivity extends AppCompatActivity implements View.OnClickLis
         setContentView(R.layout.activity_record);
         hideActionbar();
         init();
-        checkPermissions();
     }
 
     private void hideActionbar() {
@@ -66,7 +62,7 @@ public class RecordActivity extends AppCompatActivity implements View.OnClickLis
         mControlButton.setOnClickListener(this);
         mRhythmView = new RhythmView(this);
         mContentView = findViewById(R.id.activity_record_text);
-        mRecordPieceEntity = (RecordPieceEntity)getIntent().getSerializableExtra("TaskInformation");
+        mRecordPieceEntity = (RecordPieceEntity) getIntent().getSerializableExtra("TaskInformation");
         mContentView.setText(mRecordPieceEntity.getContent());
     }
 
@@ -84,8 +80,11 @@ public class RecordActivity extends AppCompatActivity implements View.OnClickLis
         }
     }
 
+
+    @NeedsPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)
     private void startRecord() {
-        File file = new File(Environment.getExternalStorageDirectory().getAbsolutePath(), mRecordPieceEntity.getContent() + ".pcm");
+        File file = new File(Environment.getExternalStorageDirectory().getAbsolutePath(),
+                mRecordPieceEntity.getContent() + ".pcm");
         try {
             FileOutputStream fileOutputStream = new FileOutputStream(file);
         } catch (FileNotFoundException e) {
@@ -103,33 +102,21 @@ public class RecordActivity extends AppCompatActivity implements View.OnClickLis
         isRecording = true;
     }
 
-    private void checkPermissions() {
-        permissionsUtil = new PermissionsUtil(this);
-        String[] permissions = new String[]{Manifest.permission.RECORD_AUDIO,
-                Manifest.permission.WRITE_EXTERNAL_STORAGE};
-        permissionsUtil.shouldShowPermissionRationale(permissions);
-    }
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
-                                           @NonNull int[] grantResults) {
-        permissionsUtil.onRequestPermissionsResult(requestCode, permissions, grantResults);
-    }
-
     private void stopRecord() {
         mMediaRecorderTask.stop();
         isRecording = false;
         // TODO: 3/20/19  
     }
 
-    private void popAlertDialog(){
+    private void popAlertDialog() {
         AlertDialog.Builder dialog = new AlertDialog.Builder(RecordActivity.this);
         dialog.setTitle("是否确认上传");
         dialog.setPositiveButton("确认", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 mRecordPieceEntity.setFinished(true);
-                //AudioUploader uploader = new AudioUploader(Environment.getExternalStorageDirectory().getAbsolutePath()+"/"+mRecordPieceEntity.getContent()+".wav");
+                //AudioUploader uploader = new AudioUploader(Environment.getExternalStorageDirectory()
+                // .getAbsolutePath()+"/"+mRecordPieceEntity.getContent()+".wav");
                 //uploader.upLode();
                 Intent intent = new Intent(RecordActivity.this, MainActivity.class);
                 startActivity(intent);
