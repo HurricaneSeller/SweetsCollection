@@ -119,11 +119,7 @@ public class RecordActivity extends AppCompatActivity implements View.OnClickLis
     private void stopRecord() {
         mMediaRecorderTask.stop();
         isRecording = false;
-        PcmToWavUtil pcmToWavUtil = new PcmToWavUtil();
-        pcmToWavUtil.pcmToWav(Environment.getExternalStorageDirectory().getAbsolutePath()+"/"+ mRecordPieceEntity.getContent()+".pcm" ,
-                Environment.getExternalStorageDirectory().getAbsolutePath()+"/"+ mRecordPieceEntity.getContent()+".wav");
-        File file = new File(Environment.getExternalStorageDirectory().getAbsolutePath()+"/"+ mRecordPieceEntity.getContent()+".pcm");
-        file.delete();
+        // TODO: 3/20/19  
     }
 
     private void popAlertDialog(){
