@@ -13,6 +13,7 @@ import android.widget.TextView;
 import com.example.unpigeon.R;
 import com.example.unpigeon.main.MainActivity;
 import com.example.unpigeon.repository.RecordPieceEntity;
+import com.example.unpigeon.utils.Constant;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -27,7 +28,6 @@ import permissions.dispatcher.RuntimePermissions;
 //@RuntimePermissions
 public class RecordActivity extends AppCompatActivity implements View.OnClickListener {
     private Button mControlButton;
-    private String title = "sample";
     private MediaRecorderTask mMediaRecorderTask;
     private boolean isRecording = false;
     private RhythmView mRhythmView;
@@ -62,14 +62,15 @@ public class RecordActivity extends AppCompatActivity implements View.OnClickLis
         mControlButton.setOnClickListener(this);
         mRhythmView = new RhythmView(this);
         mContentView = findViewById(R.id.activity_record_text);
-        mRecordPieceEntity = (RecordPieceEntity) getIntent().getSerializableExtra("TaskInformation");
+        mRecordPieceEntity = (RecordPieceEntity) getIntent().getSerializableExtra(Constant.CHOSEN_TASK);
         mContentView.setText(mRecordPieceEntity.getContent());
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.activity_record_control:
+            case R.id
+                    .activity_record_control:
                 if (!isRecording) {
                     startRecord();
                 } else {

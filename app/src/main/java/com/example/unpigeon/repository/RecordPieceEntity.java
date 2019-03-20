@@ -59,7 +59,10 @@ public class RecordPieceEntity implements Serializable {
 
     @Override
     public boolean equals(@Nullable Object obj) {
-        return super.equals(obj);
+        if (obj instanceof RecordPieceEntity) {
+            return this.getUid() == ((RecordPieceEntity)obj).getUid();
+        }
+        return false;
     }
 
     @Override

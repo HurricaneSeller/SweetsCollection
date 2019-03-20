@@ -5,9 +5,9 @@
     android:orientation="vertical"
     android:layout_width="380dp"
     android:background="@mipmap/main_talk_shadow"
-    android:paddingVertical="11dp"
+    android:paddingVertical="8dp"
     android:paddingHorizontal="18dp"
-    android:layout_height="110dp">
+    android:layout_height="100dp">
     <ImageView
         android:background="@mipmap/main_talk_white"
         android:layout_width="match_parent"

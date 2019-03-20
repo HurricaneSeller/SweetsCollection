@@ -1,7 +1,7 @@
 package com.example.unpigeon.main;
 
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -9,18 +9,16 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageButton;
 
 import com.example.unpigeon.R;
 import com.example.unpigeon.listen.ListenActivity;
-import com.example.unpigeon.utils.BaseAdapter;
 import com.example.unpigeon.repository.RecordPieceEntity;
 
 import java.util.ArrayList;
 import java.util.List;
 
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener{
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     private static final String TAG = "neverpigeon";
     private RecyclerView mTodayRecyclerView;
     private RecyclerView mTotalRecyclerView;
@@ -31,16 +29,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        hideActionBar();
         init();
+        hideStatusBar();
         testing();
     }
 
-    private void hideActionBar() {
-        ActionBar actionBar = getSupportActionBar();
-        if (actionBar != null) {
-            actionBar.hide();
-        }
+    private void hideStatusBar() {
+//        View decorView = getWindow().getDecorView();
+//        int uiOptions = View.SYSTEM_UI_FLAG_FULLSCREEN;
+//        decorView.setSystemUiVisibility(uiOptions);
+        // TODO: 3/20/19
+        getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.white));
     }
 
     private void init() {
@@ -61,6 +60,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
         }
     }
+
     private void testing() {
         mRecordPieceEntities = new ArrayList<>();
         for (int i = 0; i < 3; i++) {

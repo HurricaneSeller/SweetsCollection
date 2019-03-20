@@ -1,5 +1,6 @@
 package com.example.unpigeon.main;
 
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,7 +10,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.unpigeon.R;
+import com.example.unpigeon.record.RecordActivity;
 import com.example.unpigeon.repository.RecordPieceEntity;
+import com.example.unpigeon.utils.Constant;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,7 +22,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class ShowAdapter extends RecyclerView.Adapter<ShowAdapter.ViewHolder> {
     private List<RecordPieceEntity> mRecordPieceEntities;
-    private List<IndexRecordPiece> mIndexRecordPieces= new ArrayList<>(3);
+    private List<IndexRecordPiece> mIndexRecordPieces = new ArrayList<>(3);
     private int[] indexPicturesIndex = {R.mipmap.index1, R.mipmap.index2, R.mipmap.index3};
     private int[] indexPicturesArrows = {R.mipmap.arrow1, R.mipmap.arrow2, R.mipmap.arrow3};
     private static final String TAG = "moanbigking";
@@ -29,20 +32,23 @@ public class ShowAdapter extends RecyclerView.Adapter<ShowAdapter.ViewHolder> {
             throw new IllegalArgumentException("must have three tasks!");
         }
         mRecordPieceEntities = recordPieceEntities;
-        for (int i = 0; i< 3;i++) {
+        for (int i = 0; i < 3; i++) {
             mIndexRecordPieces.add(new IndexRecordPiece(i));
         }
     }
 
     @NonNull
     @Override
-    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public ViewHolder onCreateViewHolder(@NonNull final ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.task_item, parent, false);
-        ViewHolder viewHolder = new ViewHolder(view);
+        final ViewHolder viewHolder = new ViewHolder(view);
         viewHolder.arrowButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d(TAG, "onClick: ");
+                Intent changeToRecordActivityIntent = new Intent(parent.getContext(), RecordActivity.class);
+                changeToRecordActivityIntent.putExtra(Constant.CHOSEN_TASK,
+                        mRecordPieceEntities.get(viewHolder.getAdapterPosition()));
+                parent.getContext().startActivity(changeToRecordActivityIntent);
             }
         });
         return viewHolder;

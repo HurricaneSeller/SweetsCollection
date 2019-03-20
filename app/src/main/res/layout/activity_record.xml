@@ -5,23 +5,67 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <Button
+        android:layout_marginTop="40dp"
+        android:layout_marginStart="20dp"
+        android:background="@mipmap/back"
+        android:layout_width="15dp"
+        android:layout_height="23dp" />
     <TextView
         android:id="@+id/activity_record_text"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:minHeight="350dp"
-        android:layout_margin="20dp"
+        android:textColor="@color/font_color_main"
+        android:layout_centerHorizontal="true"
         android:gravity="center"
-        android:text="test"
-        android:textSize="20sp" />
+        android:textSize="23sp"
+        android:text="@string/record_piece"
+        android:layout_marginTop="40dp"
+        android:layout_width="55dp"
+        android:layout_height="28dp" />
 
-    <androidx.cardview.widget.CardView
+    <RelativeLayout
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/activity_record_text"
+        android:id="@+id/activity_record_text_layout"
+        android:layout_width="380dp"
+        android:layout_height="340dp">
+        <ImageView
+            android:background="@mipmap/text_bg"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:contentDescription="@string/todo" />
+        <ImageView
+            android:layout_centerInParent="true"
+            android:background="@mipmap/text_fg"
+            android:layout_width="350dp"
+            android:layout_height="310dp"
+            android:contentDescription="@string/todo" />
+        <TextView
+            android:gravity="center_vertical"
+            android:textColor="@color/font_color_main"
+            android:textSize="20sp"
+            android:text="@string/sample_record_title"
+            android:id="@+id/activity_record_title_view"
+            android:layout_marginTop="35dp"
+            android:layout_centerHorizontal="true"
+            android:layout_width="300dp"
+            android:layout_height="40dp" />
+        <TextView
+            android:textColor="@color/font_color_remind"
+            android:textSize="17sp"
+            android:text="@string/sample_record_content"
+            android:id="@+id/activity_record_content_view"
+            android:layout_marginTop="100dp"
+            android:layout_centerHorizontal="true"
+            android:layout_width="300dp"
+            android:layout_height="200dp" />
+
+    </RelativeLayout>
+
+
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/activity_record_text"
-        app:cardBackgroundColor="#b0c4de"
-        app:cardCornerRadius="20dp"
-        app:cardElevation="12dp">
+        android:layout_below="@id/activity_record_text_layout">
 
         <RelativeLayout
             android:paddingBottom="30dp"
@@ -57,5 +101,5 @@
                 android:layout_marginBottom="30dp"
                 android:text="stop" />
         </RelativeLayout>
-    </androidx.cardview.widget.CardView>
+    </RelativeLayout>
 </RelativeLayout>
