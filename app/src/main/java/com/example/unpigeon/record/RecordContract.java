@@ -21,5 +21,6 @@ public interface RecordContract {
         void setData();
         void startRecord(Context context);
         void stopRecord();
+        void createUploadTask();
     }
 }

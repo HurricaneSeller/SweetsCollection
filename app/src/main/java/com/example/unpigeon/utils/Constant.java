@@ -10,4 +10,5 @@ public class Constant {
     public static final String OK = "确定";
     public static final String START_RECORD = "开始录音";
     public static final String CHECK_COMMIT = "是否确认上传";
+    public static final int LOAD_FINISHED = 111;
 }

@@ -4,7 +4,7 @@ import com.example.unpigeon.repository.RecordPieceEntity;
 
 import androidx.annotation.NonNull;
 
-public abstract class Task {
+public class Task {
     private boolean isFinished = false;
     private String content;
     private String title;

@@ -55,7 +55,7 @@ public class PcmToWav {
         header.AvgBytesPerSec = header.BlockAlign * header.SamplesPerSec;
         header.DataHdrLeth = TOTAL_SIZE;
 
-        byte[] h = null;
+        byte[] h;
         try {
             h = header.getHeader();
         } catch (IOException e1) {
@@ -112,8 +112,8 @@ public class PcmToWav {
      * @return
      */
     public static boolean makePCMFileToWAVFile(String pcmPath, String destinationPath, boolean deletePcmFile) {
-        byte buffer[] = null;
-        int TOTAL_SIZE = 0;
+        byte buffer[];
+        int TOTAL_SIZE;
         File file = new File(pcmPath);
         if (!file.exists()) {
             return false;
@@ -152,8 +152,8 @@ public class PcmToWav {
         //合成所有的pcm文件的数据，写到目标文件
         try {
             buffer = new byte[1024 * 4]; // Length of All Files, Total Size
-            InputStream inStream = null;
-            OutputStream ouStream = null;
+            InputStream inStream;
+            OutputStream ouStream;
 
             ouStream = new BufferedOutputStream(new FileOutputStream(
                     destinationPath));
