@@ -18,6 +18,7 @@ import java.util.List;
  * 用于实现录音   暂停录音
  */
 public class AudioRecorder {
+    private static final String TAG = "moanbigking";
     private static AudioRecorder audioRecorder;
     //音频输入-麦克风
     private final static int AUDIO_INPUT = MediaRecorder.AudioSource.MIC;

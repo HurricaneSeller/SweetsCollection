@@ -12,7 +12,7 @@ import androidx.room.PrimaryKey;
 public class RecordPieceEntity implements Serializable {
 
     @PrimaryKey
-    private int uid;
+    private long uid;
 
     @ColumnInfo(name = "record_content")
     private String content;
@@ -23,11 +23,11 @@ public class RecordPieceEntity implements Serializable {
     @Ignore
     private boolean isFinished;
 
-    public int getUid() {
+    public long getUid() {
         return uid;
     }
 
-    public void setUid(int uid) {
+    public void setUid(long uid) {
         this.uid = uid;
     }
 

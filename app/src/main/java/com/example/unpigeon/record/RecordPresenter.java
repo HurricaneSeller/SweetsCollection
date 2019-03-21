@@ -41,9 +41,5 @@ class RecordPresenter implements RecordContract.Presenter{
         mView.popAlertDialog();
     }
 
-    @Override
-    public void recognize(Context context) {
-
-    }
 
 }
