@@ -8,15 +8,11 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.baidu.speech.EventManager;
-import com.baidu.speech.EventManagerFactory;
 import com.example.unpigeon.R;
 import com.example.unpigeon.loader.downloader.AudioRecorder;
 import com.example.unpigeon.repository.RecordPieceEntity;
 import com.example.unpigeon.utils.Constant;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
