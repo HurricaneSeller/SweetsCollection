@@ -4,24 +4,30 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".listen.list.ListFragment">
-    <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/fra_list_bar"
-        android:layout_alignParentTop="true"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <TextView
-            android:layout_margin="5dp"
-            android:textSize="40sp"
-            android:gravity="center"
-            android:layout_gravity="center"
-            android:text="record"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-    </com.google.android.material.appbar.AppBarLayout>
+    <TextView
+        android:id="@+id/fra_play_record"
+        android:layout_width="108dp"
+        android:layout_height="26dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        android:textColor="@color/font_color_main"
+        android:gravity="center"
+        android:text="@string/task"
+        android:textSize="21sp" />
+    <ImageView
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:id="@+id/fra_play_pic"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_below="@id/fra_play_record"
+        android:background="@mipmap/main1"
+        tools:ignore="ContentDescription" />
+
     <LinearLayout
+        android:layout_below="@id/fra_play_pic"
         android:id="@+id/fra_list_search"
         android:layout_margin="5dp"
-        android:layout_below="@id/fra_list_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <ImageView
@@ -41,6 +47,6 @@
         android:layout_below="@id/fra_list_search"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
-    <include layout="@layout/bottom_choose_layout2"/>
+    <!--<include layout="@layout/bottom_choose_layout2"/>-->
 
 </RelativeLayout>

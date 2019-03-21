@@ -38,7 +38,7 @@
                 android:layout_width="200dp"
                 android:layout_height="200dp"
                 android:layout_below="@id/main_all_today_text_view"
-                android:background="@mipmap/main1"
+                android:background="@mipmap/today_task"
                 tools:ignore="ContentDescription" />
             
             <TextView
