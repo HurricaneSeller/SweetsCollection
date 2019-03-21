@@ -12,7 +12,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.unpigeon.R;
-import com.example.unpigeon.loader.downloader.AudioSaver;
 import com.example.unpigeon.loader.task.MediaRecorderTask;
 import com.example.unpigeon.main.MainActivity;
 import com.example.unpigeon.repository.RecordPieceEntity;
@@ -81,7 +80,8 @@ public class RecordActivity extends AppCompatActivity implements View.OnClickLis
         switch (v.getId()) {
             case R.id.activity_record_control:
                 if (!isRecording) {
-                    RecordActivityPermissionsDispatcher.onClickRecordWithPermissionCheck(this);
+                    RecordActivityPermissionsDispatcher.askAudioPermissionWithPermissionCheck(this);
+                    RecordActivityPermissionsDispatcher.askStoragePermissionWithPermissionCheck(this);
                     onClickRecord();
                 } else {
                     stopRecord();
@@ -111,9 +111,20 @@ public class RecordActivity extends AppCompatActivity implements View.OnClickLis
         isRecording = true;
     }
 
-    @NeedsPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+
     void onClickRecord() {
-        AudioSaver audioSaver = new AudioSaver();
+        askStoragePermission();
+        askAudioPermission();
+    }
+
+    @NeedsPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+    void askStoragePermission() {
+        // TODO: 3/21/19
+    }
+
+    @NeedsPermission(Manifest.permission.RECORD_AUDIO)
+    void askAudioPermission() {
+        // TODO: 3/21/19
     }
 
     @OnShowRationale(Manifest.permission.WRITE_EXTERNAL_STORAGE)
@@ -128,17 +139,36 @@ public class RecordActivity extends AppCompatActivity implements View.OnClickLis
                 }).create().show();
     }
 
+    @OnShowRationale(Manifest.permission.RECORD_AUDIO)
+    void showWhyNeedsAudioPermission(final PermissionRequest request) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage(Constant.ON_OPEN_AUDIO_PERMISSION)
+                .setPositiveButton(Constant.ON_CLICK_KNOWN, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        request.proceed();
+                    }
+                }).create().show();
+    }
+
+
     @OnPermissionDenied(Manifest.permission.WRITE_EXTERNAL_STORAGE)
     void onStoragePermissionDenied() {
         Toast.makeText(this, Constant.NOT_ENOUGH_PERMISSION_GIVEN, Toast.LENGTH_SHORT).show();
         finish();
     }
 
+    @OnPermissionDenied(Manifest.permission.RECORD_AUDIO)
+    void onAudioPermissionDenied() {
+        Toast.makeText(this, Constant.NOT_ENOUGH_PERMISSION_GIVEN, Toast.LENGTH_SHORT).show();
+        finish();
+    }
+
     @OnNeverAskAgain(Manifest.permission.WRITE_EXTERNAL_STORAGE)
-    void onClickOnAskAgain() {
-        Log.d(TAG, "onClickOnAskAgain: ");
+    void onClickStorageOnAskAgain() {
+        // TODO: 3/21/19  fix it
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage(Constant.ON_NO_ASK_STORAGE)
+        builder.setMessage(Constant.ON_NO_ASK_AGAIN)
                 .setPositiveButton(Constant.OK, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -146,6 +176,20 @@ public class RecordActivity extends AppCompatActivity implements View.OnClickLis
                     }
                 }).create().show();
     }
+
+    @OnNeverAskAgain(Manifest.permission.RECORD_AUDIO)
+    void onClickAudioOnAskAgain() {
+        // TODO: 3/21/19  fix it
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage(Constant.ON_NO_ASK_AGAIN)
+                .setPositiveButton(Constant.OK, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        finish();
+                    }
+                }).create().show();
+    }
+
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
