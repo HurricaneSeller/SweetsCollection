@@ -31,7 +31,8 @@ class MainPresenter implements MainContract.Presenter{
         mThreadPool.execute(new Runnable() {
             @Override
             public void run() {
-                mRecordPieceEntityList = RecordPieceDatabase.getInstance(context).recordPieceDao().getAll();
+                mRecordPieceDao = RecordPieceDatabase.getInstance(context).recordPieceDao();
+                mRecordPieceEntityList = mRecordPieceDao.getAll();
                 if (mRecordPieceEntityList != null) {
                     Message loadFinished = new Message();
                     loadFinished.what = Constant.LOAD_FINISHED;

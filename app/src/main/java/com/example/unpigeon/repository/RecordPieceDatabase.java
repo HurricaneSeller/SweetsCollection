@@ -12,7 +12,6 @@ import androidx.room.RoomDatabase;
  */
 @Database(entities = {RecordPieceEntity.class}, version = 1)
 public abstract class RecordPieceDatabase extends RoomDatabase {
-    private static final String TAG = "moanbigking";
     private static RecordPieceDatabase INSTANCE = null;
 
     public abstract RecordPieceDao recordPieceDao();
@@ -20,10 +19,8 @@ public abstract class RecordPieceDatabase extends RoomDatabase {
     private static final Object o = new Object();
 
     public static RecordPieceDatabase getInstance(Context context) {
-        Log.d(TAG, "getInstance: 0");
         synchronized (o) {
             if (INSTANCE == null) {
-                Log.d(TAG, "getInstance: 1");
                 INSTANCE = Room.databaseBuilder(context.getApplicationContext(), RecordPieceDatabase.class,
                         "record_piece.db").build();
             }
