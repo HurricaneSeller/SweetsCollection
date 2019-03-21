@@ -1,8 +1,10 @@
-package com.example.unpigeon.record;
+package com.example.unpigeon.loader.task;
 
 import android.media.AudioFormat;
 import android.media.AudioRecord;
 import android.media.MediaRecorder;
+
+import com.example.unpigeon.record.OnRecording;
 
 public class PCMRecordTask {
     //默认配置AudioRecord

@@ -9,8 +9,11 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.unpigeon.R;
+import com.example.unpigeon.loader.downloader.AudioSaver;
+import com.example.unpigeon.loader.task.MediaRecorderTask;
 import com.example.unpigeon.main.MainActivity;
 import com.example.unpigeon.repository.RecordPieceEntity;
 import com.example.unpigeon.utils.Constant;
@@ -19,36 +22,40 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 
-import androidx.appcompat.app.ActionBar;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import permissions.dispatcher.NeedsPermission;
+import permissions.dispatcher.OnNeverAskAgain;
+import permissions.dispatcher.OnPermissionDenied;
+import permissions.dispatcher.OnShowRationale;
+import permissions.dispatcher.PermissionRequest;
 import permissions.dispatcher.RuntimePermissions;
 
-//@RuntimePermissions
+@RuntimePermissions
 public class RecordActivity extends AppCompatActivity implements View.OnClickListener {
     private Button mControlButton;
     private MediaRecorderTask mMediaRecorderTask;
     private boolean isRecording = false;
-    private RhythmView mRhythmView;
+    //    private RhythmView mRhythmView;
     private String TAG = "moanbigking";
     private RecordPieceEntity mRecordPieceEntity;
     private TextView mContentView;
     private TextView mTimeView;
+    private TextView mTitleView;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_record);
-        hideActionbar();
+        hideStatusBar();
         init();
     }
 
-    private void hideActionbar() {
-        ActionBar actionBar = getSupportActionBar();
-        if (actionBar != null) {
-            actionBar.hide();
-        }
+    private void hideStatusBar() {
+        getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.white));
     }
 
     @Override
@@ -60,8 +67,11 @@ public class RecordActivity extends AppCompatActivity implements View.OnClickLis
     private void init() {
         mControlButton = findViewById(R.id.activity_record_control);
         mControlButton.setOnClickListener(this);
-        mRhythmView = new RhythmView(this);
-        mContentView = findViewById(R.id.activity_record_text);
+        mContentView = findViewById(R.id.activity_record_content_view);
+        mTitleView = findViewById(R.id.activity_record_title_view);
+        mTimeView = findViewById(R.id.activity_record_time);
+        mControlButton.setOnClickListener(this);
+//        mRhythmView = new RhythmView(this);
         mRecordPieceEntity = (RecordPieceEntity) getIntent().getSerializableExtra(Constant.CHOSEN_TASK);
         mContentView.setText(mRecordPieceEntity.getContent());
     }
@@ -69,10 +79,10 @@ public class RecordActivity extends AppCompatActivity implements View.OnClickLis
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id
-                    .activity_record_control:
+            case R.id.activity_record_control:
                 if (!isRecording) {
-                    startRecord();
+                    RecordActivityPermissionsDispatcher.onClickRecordWithPermissionCheck(this);
+                    onClickRecord();
                 } else {
                     stopRecord();
                     popAlertDialog();
@@ -81,8 +91,6 @@ public class RecordActivity extends AppCompatActivity implements View.OnClickLis
         }
     }
 
-
-//    @NeedsPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)
     private void startRecord() {
         File file = new File(Environment.getExternalStorageDirectory().getAbsolutePath(),
                 mRecordPieceEntity.getContent() + ".pcm");
@@ -95,12 +103,55 @@ public class RecordActivity extends AppCompatActivity implements View.OnClickLis
         mMediaRecorderTask.setOnVolumeChangeListener(new MediaRecorderTask.OnVolumeChangeListener() {
             @Override
             public void volumeChange(float per) {
-                mRhythmView.setPerHeight(per);
+//                mRhythmView.setPerHeight(per);
                 Log.d(TAG, "volumeChange: ");
             }
         });
         mMediaRecorderTask.start(file);
         isRecording = true;
+    }
+
+    @NeedsPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+    void onClickRecord() {
+        AudioSaver audioSaver = new AudioSaver();
+    }
+
+    @OnShowRationale(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+    void showWhyNeedsStoragePermission(final PermissionRequest request) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage(Constant.ON_OPEN_STORAGE_PERMISSION)
+                .setPositiveButton(Constant.ON_CLICK_KNOWN, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        request.proceed();
+                    }
+                }).create().show();
+    }
+
+    @OnPermissionDenied(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+    void onStoragePermissionDenied() {
+        Toast.makeText(this, Constant.NOT_ENOUGH_PERMISSION_GIVEN, Toast.LENGTH_SHORT).show();
+        finish();
+    }
+
+    @OnNeverAskAgain(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+    void onClickOnAskAgain() {
+        Log.d(TAG, "onClickOnAskAgain: ");
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage(Constant.ON_NO_ASK_STORAGE)
+                .setPositiveButton(Constant.OK, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        finish();
+                    }
+                }).create().show();
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
+                                           @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        RecordActivityPermissionsDispatcher.onRequestPermissionsResult(this, requestCode, grantResults);
     }
 
     private void stopRecord() {

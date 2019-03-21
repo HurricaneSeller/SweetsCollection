@@ -1,105 +1,112 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <Button
-        android:layout_marginTop="40dp"
-        android:layout_marginStart="20dp"
-        android:background="@mipmap/back"
         android:layout_width="15dp"
-        android:layout_height="23dp" />
+        android:layout_height="23dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:background="@mipmap/back" />
+
     <TextView
         android:id="@+id/activity_record_text"
-        android:textColor="@color/font_color_main"
-        android:layout_centerHorizontal="true"
-        android:gravity="center"
-        android:textSize="23sp"
-        android:text="@string/record_piece"
-        android:layout_marginTop="40dp"
         android:layout_width="55dp"
-        android:layout_height="28dp" />
+        android:layout_height="28dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:text="@string/record_piece"
+        android:textColor="@color/font_color_main"
+        android:textSize="23sp" />
 
     <RelativeLayout
-        android:layout_centerHorizontal="true"
-        android:layout_below="@id/activity_record_text"
         android:id="@+id/activity_record_text_layout"
-        android:layout_width="380dp"
-        android:layout_height="340dp">
+        android:layout_width="360dp"
+        android:layout_height="320dp"
+        android:layout_below="@id/activity_record_text"
+        android:layout_centerHorizontal="true">
+
         <ImageView
-            android:background="@mipmap/text_bg"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:contentDescription="@string/todo" />
+            android:background="@mipmap/text_bg"
+            android:contentDescription="@string/TODO" />
+
         <ImageView
+            android:layout_width="330dp"
+            android:layout_height="290dp"
             android:layout_centerInParent="true"
             android:background="@mipmap/text_fg"
-            android:layout_width="350dp"
-            android:layout_height="310dp"
-            android:contentDescription="@string/todo" />
-        <TextView
-            android:gravity="center_vertical"
-            android:textColor="@color/font_color_main"
-            android:textSize="20sp"
-            android:text="@string/sample_record_title"
-            android:id="@+id/activity_record_title_view"
-            android:layout_marginTop="35dp"
-            android:layout_centerHorizontal="true"
-            android:layout_width="300dp"
-            android:layout_height="40dp" />
-        <TextView
-            android:textColor="@color/font_color_remind"
-            android:textSize="17sp"
-            android:text="@string/sample_record_content"
-            android:id="@+id/activity_record_content_view"
-            android:layout_marginTop="100dp"
-            android:layout_centerHorizontal="true"
-            android:layout_width="300dp"
-            android:layout_height="200dp" />
+            android:contentDescription="@string/TODO" />
 
+        <TextView
+            android:id="@+id/activity_record_title_view"
+            android:layout_width="300dp"
+            android:layout_height="40dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="35dp"
+            android:gravity="center_vertical"
+            android:text="@string/sample_record_title"
+            android:textColor="@color/font_color_main"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/activity_record_content_view"
+            android:layout_width="300dp"
+            android:layout_height="200dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="100dp"
+            android:text="@string/sample_record_content"
+            android:textColor="@color/font_color_remind"
+            android:textSize="17sp" />
+<!--can scroll-->
     </RelativeLayout>
 
 
     <RelativeLayout
+        android:layout_marginTop="10dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_below="@id/activity_record_text_layout">
 
-        <RelativeLayout
-            android:paddingBottom="30dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <TextView
-                android:text="record1"
-                android:textSize="18sp"
-                android:id="@+id/activity_record_title"
-                android:layout_centerHorizontal="true"
-                android:layout_width="wrap_content"
-                android:layout_height="20dp" />
-            <TextView
-                android:layout_centerHorizontal="true"
-                android:layout_below="@id/activity_record_title"
-                android:id="@+id/activity_record_time"
-                tools:text="11:22"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-            <com.example.unpigeon.record.RhythmView
-                android:id="@+id/fra_record_voice"
-                android:layout_width="match_parent"
-                android:layout_height="120dp"
-                android:layout_above="@id/activity_record_control"
-                android:background="#000" />
+        <!--<TextView-->
+            <!--android:id="@+id/activity_record_title"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="20dp"-->
+            <!--android:text="record1"-->
+            <!--android:textColor="@color/font_color_main"-->
+            <!--android:layout_marginStart="40dp"-->
+            <!--android:layout_below="@id/activity_record_time"-->
+            <!--android:textSize="18sp" />-->
 
-            <Button
-                android:id="@+id/activity_record_control"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_centerHorizontal="true"
-                android:layout_marginBottom="30dp"
-                android:text="stop" />
-        </RelativeLayout>
+        <TextView
+            android:textColor="@color/font_color_main"
+            android:textSize="30sp"
+            android:id="@+id/activity_record_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:layout_below="@id/activity_record_voice"
+            android:layout_marginStart="40dp"
+            android:text="11:22" />
+
+        <com.example.unpigeon.record.RhythmView
+            android:id="@+id/activity_record_voice"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_alignParentTop="true"
+            android:background="#000" />
+
+        <Button
+            android:id="@+id/activity_record_control"
+            android:layout_width="90dp"
+            android:layout_height="90dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="20dp"
+            android:layout_centerHorizontal="true"
+            android:background="@mipmap/button" />
     </RelativeLayout>
 </RelativeLayout>

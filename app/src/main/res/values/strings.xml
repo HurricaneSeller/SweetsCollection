@@ -10,8 +10,7 @@
     <string name="wait_to_be_done">待完成</string>
     <string name="sample_title">多人采集不同文本</string>
     <string name="record_piece">录音</string>
-    <string name="todo">TODO</string>
-    <string name="todo">TODO</string>
+    <string name="TODO">TODO</string>
     <string name="sample_record_title">任务一 - 上传一段录音</string>
     <string name="sample_record_content">滚滚长江东逝水，浪花淘尽英雄。是非成败转头空。青山依旧在，几度夕阳红。 白发渔樵江渚上，惯看秋月春风。一壶浊酒喜相逢。古今多少事，都付笑谈中。</string>
 </resources>
