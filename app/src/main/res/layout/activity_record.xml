@@ -8,7 +8,6 @@
         android:layout_width="15dp"
         android:layout_height="23dp"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
         android:background="@mipmap/back" />
 
     <TextView
@@ -16,7 +15,6 @@
         android:layout_width="55dp"
         android:layout_height="28dp"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
         android:gravity="center"
         android:text="@string/record_piece"
         android:textColor="@color/font_color_main"

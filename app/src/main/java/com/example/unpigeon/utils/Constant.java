@@ -8,4 +8,6 @@ public class Constant {
     public static final String NOT_ENOUGH_PERMISSION_GIVEN = "当前应用未完全授权";
     public static final String ON_NO_ASK_AGAIN = "不开启将无法正常使用！";
     public static final String OK = "确定";
+    public static final String START_RECORD = "开始录音";
+    public static final String CHECK_COMMIT = "是否确认上传";
 }

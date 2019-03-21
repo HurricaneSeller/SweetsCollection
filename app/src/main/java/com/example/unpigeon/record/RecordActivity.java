@@ -4,22 +4,19 @@ import android.Manifest;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Environment;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.unpigeon.R;
-import com.example.unpigeon.loader.task.MediaRecorderTask;
+import com.example.unpigeon.loader.downloader.AudioRecorder;
 import com.example.unpigeon.main.MainActivity;
 import com.example.unpigeon.repository.RecordPieceEntity;
 import com.example.unpigeon.utils.Constant;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
@@ -35,14 +32,13 @@ import permissions.dispatcher.RuntimePermissions;
 @RuntimePermissions
 public class RecordActivity extends AppCompatActivity implements View.OnClickListener {
     private Button mControlButton;
-    private MediaRecorderTask mMediaRecorderTask;
-    private boolean isRecording = false;
     //    private RhythmView mRhythmView;
     private String TAG = "moanbigking";
     private RecordPieceEntity mRecordPieceEntity;
     private TextView mContentView;
     private TextView mTimeView;
     private TextView mTitleView;
+    private AudioRecorder mAudioRecorder;
 
 
     @Override
@@ -73,42 +69,22 @@ public class RecordActivity extends AppCompatActivity implements View.OnClickLis
 //        mRhythmView = new RhythmView(this);
         mRecordPieceEntity = (RecordPieceEntity) getIntent().getSerializableExtra(Constant.CHOSEN_TASK);
         mContentView.setText(mRecordPieceEntity.getContent());
+        mAudioRecorder = AudioRecorder.getInstance();
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.activity_record_control:
-                if (!isRecording) {
+                if (mAudioRecorder.getStatus() == AudioRecorder.Status.STATUS_NO_READY) {
                     RecordActivityPermissionsDispatcher.askAudioPermissionWithPermissionCheck(this);
                     RecordActivityPermissionsDispatcher.askStoragePermissionWithPermissionCheck(this);
                     onClickRecord();
                 } else {
                     stopRecord();
-                    popAlertDialog();
                 }
                 break;
         }
-    }
-
-    private void startRecord() {
-        File file = new File(Environment.getExternalStorageDirectory().getAbsolutePath(),
-                mRecordPieceEntity.getContent() + ".pcm");
-        try {
-            FileOutputStream fileOutputStream = new FileOutputStream(file);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-        mMediaRecorderTask = new MediaRecorderTask();
-        mMediaRecorderTask.setOnVolumeChangeListener(new MediaRecorderTask.OnVolumeChangeListener() {
-            @Override
-            public void volumeChange(float per) {
-//                mRhythmView.setPerHeight(per);
-                Log.d(TAG, "volumeChange: ");
-            }
-        });
-        mMediaRecorderTask.start(file);
-        isRecording = true;
     }
 
 
@@ -119,12 +95,14 @@ public class RecordActivity extends AppCompatActivity implements View.OnClickLis
 
     @NeedsPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)
     void askStoragePermission() {
-        // TODO: 3/21/19
     }
 
     @NeedsPermission(Manifest.permission.RECORD_AUDIO)
     void askAudioPermission() {
-        // TODO: 3/21/19
+        String fileName = new SimpleDateFormat("yyyyMMddhhmmss").format(new Date());
+        mAudioRecorder.createDefaultAudio(fileName);
+        mAudioRecorder.startRecord(null);
+        Toast.makeText(this, Constant.START_RECORD, Toast.LENGTH_SHORT).show();
     }
 
     @OnShowRationale(Manifest.permission.WRITE_EXTERNAL_STORAGE)
@@ -199,29 +177,24 @@ public class RecordActivity extends AppCompatActivity implements View.OnClickLis
     }
 
     private void stopRecord() {
-        mMediaRecorderTask.stop();
-        isRecording = false;
-        // TODO: 3/20/19  
+        mAudioRecorder.stopRecord();
+        popAlertDialog();
     }
 
     private void popAlertDialog() {
         AlertDialog.Builder dialog = new AlertDialog.Builder(RecordActivity.this);
-        dialog.setTitle("是否确认上传");
-        dialog.setPositiveButton("确认", new DialogInterface.OnClickListener() {
+        dialog.setTitle(Constant.CHECK_COMMIT);
+        dialog.setPositiveButton(Constant.OK, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                mRecordPieceEntity.setFinished(true);
-                //AudioUploader uploader = new AudioUploader(Environment.getExternalStorageDirectory()
-                // .getAbsolutePath()+"/"+mRecordPieceEntity.getContent()+".wav");
-                //uploader.upLode();
-                Intent intent = new Intent(RecordActivity.this, MainActivity.class);
-                startActivity(intent);
+                finish();
+                // TODO: 3/21/19 update
             }
         });
         dialog.setNegativeButton("取消", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-
+                // TODO: 3/21/19 save local
             }
         });
         dialog.show();
