@@ -15,10 +15,12 @@ public interface RecordContract {
         void onClickStorageOnAskAgain();
         void onClickAudioOnAskAgain();
         void popAlertDialog();
+        void toast(String text);
     }
     interface Presenter{
         void setData();
         void startRecord(Context context);
         void stopRecord();
+        void recognize(Context context);
     }
 }

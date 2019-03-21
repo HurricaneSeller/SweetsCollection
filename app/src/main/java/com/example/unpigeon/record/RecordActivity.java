@@ -201,6 +201,11 @@ public class RecordActivity extends AppCompatActivity implements View.OnClickLis
     }
 
     @Override
+    public void toast(String text) {
+        Toast.makeText(this, text, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
     public void setTitle(String title) {
         mTitleView.setText(title);
     }

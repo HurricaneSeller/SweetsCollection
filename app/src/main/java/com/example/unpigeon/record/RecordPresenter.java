@@ -1,10 +1,7 @@
 package com.example.unpigeon.record;
 
 import android.content.Context;
-import android.widget.Toast;
 
-import com.baidu.speech.EventManager;
-import com.baidu.speech.EventManagerFactory;
 import com.example.unpigeon.loader.downloader.AudioRecorder;
 import com.example.unpigeon.repository.RecordPieceEntity;
 import com.example.unpigeon.utils.Constant;
@@ -34,8 +31,7 @@ class RecordPresenter implements RecordContract.Presenter{
         String fileName = new SimpleDateFormat("yyyyMMddhhmmss").format(new Date());
         mAudioRecorder.createDefaultAudio(fileName);
         mAudioRecorder.startRecord(null);
-        Toast.makeText(context, Constant.START_RECORD, Toast.LENGTH_SHORT).show();
-        EventManager asr = EventManagerFactory.create(context, "asr");
+        mView.toast(Constant.START_RECORD);
 
     }
 
@@ -43,6 +39,11 @@ class RecordPresenter implements RecordContract.Presenter{
     public void stopRecord() {
         mAudioRecorder.stopRecord();
         mView.popAlertDialog();
+    }
+
+    @Override
+    public void recognize(Context context) {
+
     }
 
 }
