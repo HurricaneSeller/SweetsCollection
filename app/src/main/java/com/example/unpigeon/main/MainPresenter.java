@@ -34,9 +34,9 @@ class MainPresenter implements MainContract.Presenter{
                 mRecordPieceDao = RecordPieceDatabase.getInstance(context).recordPieceDao();
                 mRecordPieceEntityList = mRecordPieceDao.getAll();
                 if (mRecordPieceEntityList != null) {
-                    Message loadFinished = new Message();
+                    Message loadFinished = Message.obtain();
                     loadFinished.what = Constant.LOAD_FINISHED;
-                    mHandler.dispatchMessage(loadFinished);
+                    mHandler.handleMessage(loadFinished);
                 }
             }
         });

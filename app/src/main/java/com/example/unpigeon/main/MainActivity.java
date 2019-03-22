@@ -26,7 +26,7 @@ import java.util.List;
 
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener, MainContract.View {
-    private static final String TAG = "neverpigeon";
+    private static final String TAG = "moanbigking";
     private RecyclerView mTodayRecyclerView;
     private RecyclerView mTotalRecyclerView;
     private Button mShowAllButton;
@@ -80,14 +80,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mTodayRecyclerView.setAdapter(new ShowAdapter(mRecordPieceEntities));
         mTodayRecyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
+
     @SuppressLint("HandlerLeak")
-    private Handler mHandler = new Handler(){
+    private Handler mHandler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
             switch (msg.what) {
                 case Constant.LOAD_FINISHED:
-                    Log.d(TAG, "handleMessage: ");
+                    //loaded finished and user can interact with ui
                     break;
+                default:
             }
         }
     };
