@@ -1,11 +1,9 @@
-package com.example.unpigeon.loader.downloader;
+package com.example.unpigeon.loader.local;
 
-import android.content.pm.PackageManager;
 import android.os.Environment;
 import android.text.TextUtils;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 

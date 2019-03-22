@@ -1,4 +1,4 @@
-package com.example.unpigeon.loader.downloader;
+package com.example.unpigeon.loader.local;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;

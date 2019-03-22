@@ -11,4 +11,6 @@ public class Constant {
     public static final String START_RECORD = "开始录音";
     public static final String CHECK_COMMIT = "是否确认上传";
     public static final int LOAD_FINISHED = 111;
+    public static final int CODE_ERROR = 400;
+    public static final int CODE_OK = 200;
 }

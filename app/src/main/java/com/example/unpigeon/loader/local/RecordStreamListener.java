@@ -1,4 +1,4 @@
-package com.example.unpigeon.loader.downloader;
+package com.example.unpigeon.loader.local;
 
 /**
  * Created by HXL on 16/8/11.

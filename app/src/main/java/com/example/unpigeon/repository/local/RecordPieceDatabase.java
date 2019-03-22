@@ -1,7 +1,6 @@
-package com.example.unpigeon.repository;
+package com.example.unpigeon.repository.local;
 
 import android.content.Context;
-import android.util.Log;
 
 import androidx.room.Database;
 import androidx.room.Room;

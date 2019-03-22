@@ -1,4 +1,4 @@
-package com.example.unpigeon.loader.downloader;
+package com.example.unpigeon.loader.local;
 
 import android.util.Log;
 
@@ -12,7 +12,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package com.example.unpigeon.repository;
+package com.example.unpigeon.repository.local;
 
 import java.util.List;
 

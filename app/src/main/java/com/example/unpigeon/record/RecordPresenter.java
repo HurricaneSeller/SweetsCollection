@@ -2,9 +2,9 @@ package com.example.unpigeon.record;
 
 import android.content.Context;
 
-import com.example.unpigeon.loader.downloader.AudioRecorder;
+import com.example.unpigeon.loader.local.AudioRecorder;
 import com.example.unpigeon.loader.task.Task;
-import com.example.unpigeon.repository.RecordPieceEntity;
+import com.example.unpigeon.repository.local.RecordPieceEntity;
 import com.example.unpigeon.utils.Constant;
 
 import java.text.SimpleDateFormat;

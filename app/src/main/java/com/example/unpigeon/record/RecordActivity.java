@@ -9,8 +9,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.unpigeon.R;
-import com.example.unpigeon.loader.downloader.AudioRecorder;
-import com.example.unpigeon.repository.RecordPieceEntity;
+import com.example.unpigeon.loader.local.AudioRecorder;
+import com.example.unpigeon.repository.local.RecordPieceEntity;
 import com.example.unpigeon.utils.Constant;
 
 
