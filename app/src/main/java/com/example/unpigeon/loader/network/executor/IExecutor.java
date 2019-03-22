@@ -1,47 +1,27 @@
 package com.example.unpigeon.loader.network.executor;
 
+import com.example.unpigeon.loader.network.ICallback;
 import com.example.unpigeon.loader.network.RequestParams;
-import com.example.unpigeon.loader.network.call.ICallBack;
-
-/**
- * Created by kimi on 2017/5/5 0005.
- * Email: 24750@163.com
- */
 
 public interface IExecutor {
+    //perform get
+    void doGet(RequestParams requestParams, ICallback iCallback);
 
-    /**
-     * get请求
-     */
-    void doGet(RequestParams requestParams, ICallBack callback);
+    //perform post(key-value)
+    void doPost(RequestParams requestParams, ICallback iCallback);
 
-    /**
-     * post请求 key-value
-     */
-    void doPost(RequestParams requestParams, ICallBack callback);
+    //perform post(json)
+    void doJsonPost(RequestParams requestParams, ICallback iCallback);
 
-    /**
-     * post请求 json
-     */
-    void doPostJson(RequestParams requestParams, ICallBack callback);
+    //upload file
+    void doUploadFile(RequestParams requestParams, ICallback iCallback);
 
-    /**
-     * uploadFile
-     */
-    void doUploadFile(RequestParams requestParams, ICallBack callback);
+    //download file
+    void doDownloadFile(RequestParams requestParams, ICallback iCallback);
 
-    /**
-     * downLoad
-     */
-    void doDownLoad(RequestParams requestParams, ICallBack callback);
-
-    /**
-     * 取消请求
-     */
+    //cancel
     void cancel(Object tag);
 
-    /**
-     * 取消所有请求
-     */
+    //cancel all
     void cancelAll();
 }

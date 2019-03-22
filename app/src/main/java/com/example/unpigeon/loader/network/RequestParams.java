@@ -1,70 +1,61 @@
 package com.example.unpigeon.loader.network;
 
-
-import com.example.unpigeon.loader.network.call.ICallBack;
-
 import java.io.File;
 import java.nio.charset.Charset;
 import java.util.HashMap;
 
-
-/**
- * Created by kimi on 2017/5/5 0005.
- * Email: 24750@163.com
- */
+import androidx.annotation.NonNull;
 
 public final class RequestParams {
-
-    public String url;
-    public HashMap<String, String> header = new HashMap<>();
-    public HashMap<String, String> requestParams = new HashMap<>();
-    public HashMap<String, File> files = new HashMap<>();
-    public Charset charset = Charset.forName("UTF-8");
-    public Object tag;
-    public Method method = Method.GET;
-    public String body;
-    public String downLoadFilePath;
-    public ICallBack callback;
-
+    private String mUrl;
+    private HashMap<String, String> mHeader = new HashMap<>();
+    private HashMap<String, String> mRequestParams = new HashMap<>();
+    private HashMap<String, File> mFiles = new HashMap<>();
+    private Charset mCharset = Charset.forName("UTF-8");
+    private Object tag;
+    private Method mMethod = Method.GET;
+    private String mBody;
+    private String mDownloadFilePath;
+    private ICallback mICallback;
 
     public String getUrl() {
-        return url;
+        return mUrl;
     }
 
     public void setUrl(String url) {
-        this.url = url;
+        mUrl = url;
     }
 
     public HashMap<String, String> getHeader() {
-        return header;
+        return mHeader;
     }
 
     public void setHeader(HashMap<String, String> header) {
-        this.header = header;
+        mHeader = header;
     }
 
     public HashMap<String, String> getRequestParams() {
-        return requestParams;
+        return mRequestParams;
     }
 
     public void setRequestParams(HashMap<String, String> requestParams) {
-        this.requestParams = requestParams;
+        mRequestParams = requestParams;
     }
 
     public HashMap<String, File> getFiles() {
-        return files;
+        return mFiles;
     }
 
     public void setFiles(HashMap<String, File> files) {
-        this.files = files;
+        mFiles = files;
     }
 
     public Charset getCharset() {
-        return charset;
+        return mCharset;
     }
 
     public void setCharset(Charset charset) {
-        this.charset = charset;
+        mCharset = charset;
     }
 
     public Object getTag() {
@@ -75,36 +66,36 @@ public final class RequestParams {
         this.tag = tag;
     }
 
-    public Method getMethod() {
-        return method;
-    }
-
-    public void setMethod(Method method) {
-        this.method = method;
-    }
-
     public String getBody() {
-        return body;
+        return mBody;
     }
 
     public void setBody(String body) {
-        this.body = body;
+        mBody = body;
     }
 
-    public String getDownLoadFilePath() {
-        return downLoadFilePath;
+    public String getDownloadFilePath() {
+        return mDownloadFilePath;
     }
 
-    public void setDownLoadFilePath(String downLoadFilePath) {
-        this.downLoadFilePath = downLoadFilePath;
+    public void setDownloadFilePath(String downloadFilePath) {
+        mDownloadFilePath = downloadFilePath;
     }
 
-    public ICallBack getCallback() {
-        return callback;
+    public ICallback getICallback() {
+        return mICallback;
     }
 
-    public void setCallback(ICallBack callback) {
-        this.callback = callback;
+    public Method getMethod() {
+        return mMethod;
+    }
+
+    public void setMethod(Method method) {
+        mMethod = method;
+    }
+
+    public void setICallback(ICallback ICallback) {
+        mICallback = ICallback;
     }
 
     public static class Builder {
@@ -114,68 +105,65 @@ public final class RequestParams {
         private HashMap<String, File> files = new HashMap<>();
         private Charset charset = Charset.forName("UTF-8");
         private Object tag;
-        public String downLoadFilePath;
-        private Method method = Method.GET;
         private String body;
+        private String downloadFilePath;
+        private Method mMethod = Method.GET;
 
-        public Builder url(String url) {
+        public Builder url(@NonNull String url) {
             this.url = url;
             return this;
         }
 
-        public Builder header(String key, String value) {
-            this.header.put(key, value);
+        public Builder header(@NonNull HashMap<String, String> header) {
+            this.header = header;
             return this;
         }
 
-        public Builder params(String key, String value) {
-            this.requestParams.put(key, value);
+        public Builder requestParams(@NonNull HashMap<String, String> requestParams) {
+            this.requestParams = requestParams;
             return this;
         }
 
-        public Builder files(String key, File file) {
-            this.files.put(key, file);
+        public Builder files(@NonNull HashMap<String, File> files) {
+            this.files = files;
             return this;
         }
 
-        public Builder defaultCharset(Charset charset) {
+        public Builder charset(@NonNull Charset charset) {
             this.charset = charset;
             return this;
         }
 
-        public Builder tag(Object tag) {
+        public Builder tag(@NonNull Object tag) {
             this.tag = tag;
             return this;
         }
 
-        public Builder method(Method method) {
-            this.method = method;
+        public Builder method(@NonNull Method method) {
+            this.mMethod = method;
             return this;
         }
 
-        public Builder body(String body) {
+        public Builder body(@NonNull String body) {
             this.body = body;
             return this;
         }
 
-        public Builder downLoadFilePath(String downLoadFilePath) {
-            this.downLoadFilePath = downLoadFilePath;
+        public Builder downloadFilePath(@NonNull String downloadFilePath) {
+            this.downloadFilePath = downloadFilePath;
             return this;
         }
-
-
         public RequestParams build() {
-            RequestParams obj = new RequestParams();
-            obj.url = this.url;
-            obj.header = this.header;
-            obj.requestParams = this.requestParams;
-            obj.files = this.files;
-            obj.charset = this.charset;
-            obj.tag = this.tag;
-            obj.method = this.method;
-            obj.body = this.body;
-            obj.downLoadFilePath = this.downLoadFilePath;
-            return obj;
+            RequestParams requestParams = new RequestParams();
+            requestParams.mUrl = url;
+            requestParams.mBody = body;
+            requestParams.mCharset = charset;
+            requestParams.mDownloadFilePath = downloadFilePath;
+            requestParams.mFiles = files;
+            requestParams.tag = tag;
+            requestParams.mMethod = mMethod;
+            requestParams.mHeader = header;
+            return requestParams;
         }
     }
 }
