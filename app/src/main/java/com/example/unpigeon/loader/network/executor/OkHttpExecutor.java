@@ -1,6 +1,7 @@
 package com.example.unpigeon.loader.network.executor;
 
 import com.example.unpigeon.loader.network.ICallback;
+import com.example.unpigeon.loader.network.NetworkUtils;
 import com.example.unpigeon.loader.network.RequestParams;
 import com.example.unpigeon.loader.network.config.OkHttpConfig;
 
@@ -11,6 +12,7 @@ import java.util.concurrent.TimeUnit;
 
 import okhttp3.Call;
 import okhttp3.OkHttpClient;
+import okhttp3.Request;
 
 public class OkHttpExecutor implements IExecutor {
     public static OkHttpClient sOkHttpClient;
@@ -43,7 +45,8 @@ public class OkHttpExecutor implements IExecutor {
 
     @Override
     public void doGet(RequestParams requestParams, ICallback iCallback) {
-
+        iCallback.onStart();
+        Request request = new Request.Builder().url()
     }
 
     @Override
