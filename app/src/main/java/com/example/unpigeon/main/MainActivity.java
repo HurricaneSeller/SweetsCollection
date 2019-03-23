@@ -1,10 +1,5 @@
 package com.example.unpigeon.main;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
@@ -20,6 +15,11 @@ import com.example.unpigeon.utils.Constant;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener, MainContract.View {
@@ -38,6 +38,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         hideStatusBar();
         testing();
     }
+
 
     private void hideStatusBar() {
         getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.white));
@@ -90,4 +91,5 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
         }
     };
+
 }

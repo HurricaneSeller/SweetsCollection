@@ -116,18 +116,18 @@ public final class RequestParams {
             return this;
         }
 
-        public Builder header(@NonNull HashMap<String, String> header) {
-            this.header = header;
+        public Builder header(String key, String value) {
+            header.put(key, value);
             return this;
         }
 
-        public Builder requestParams(@NonNull HashMap<String, String> requestParams) {
-            this.requestParams = requestParams;
+        public Builder requestParams(String key, String value) {
+            requestParams.put(key, value);
             return this;
         }
 
-        public Builder files(@NonNull HashMap<String, File> files) {
-            this.files = files;
+        public Builder files(String key, File file) {
+            files.put(key, file);
             return this;
         }
 
@@ -155,6 +155,7 @@ public final class RequestParams {
             this.downloadFilePath = downloadFilePath;
             return this;
         }
+
         public RequestParams build() {
             RequestParams requestParams = new RequestParams();
             requestParams.mUrl = url;
