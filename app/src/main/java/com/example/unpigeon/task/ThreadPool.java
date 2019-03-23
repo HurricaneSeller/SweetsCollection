@@ -1,4 +1,4 @@
-package com.example.unpigeon.repository.task;
+package com.example.unpigeon.task;
 
 import java.util.concurrent.BlockingDeque;
 import java.util.concurrent.Executors;

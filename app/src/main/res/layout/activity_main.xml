@@ -7,7 +7,8 @@
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_above="@id/main_activity_bottom_bar">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -19,51 +20,54 @@
                 android:layout_height="26dp"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="50dp"
-                android:textColor="@color/font_color_main"
                 android:gravity="center"
                 android:text="@string/today_task"
+                android:textColor="@color/font_color_main"
                 android:textSize="21sp" />
+
             <ImageView
-                android:layout_marginEnd="35dp"
-                android:layout_marginTop="50dp"
-                android:layout_alignParentEnd="true"
-                android:background="@mipmap/main2"
                 android:layout_width="26dp"
                 android:layout_height="26dp"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="50dp"
+                android:layout_marginEnd="35dp"
+                android:background="@mipmap/main2"
                 tools:ignore="ContentDescription" />
+
             <ImageView
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="30dp"
                 android:id="@+id/main_all_pic"
                 android:layout_width="200dp"
                 android:layout_height="200dp"
                 android:layout_below="@id/main_all_today_text_view"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="30dp"
                 android:background="@mipmap/today_task"
                 tools:ignore="ContentDescription" />
-            
+
             <TextView
-                android:textColor="@color/font_color_remind"
                 android:id="@+id/main_all_wait_text_view"
-                android:layout_marginStart="33dp"
-                android:layout_marginTop="350dp"
-                android:gravity="center"
-                android:textSize="17sp"
-                android:text="@string/wait_to_be_done"
                 android:layout_width="60dp"
-                android:layout_height="20dp" />
+                android:layout_height="20dp"
+                android:layout_marginStart="33dp"
+                android:layout_marginTop="340dp"
+                android:gravity="center"
+                android:text="@string/wait_to_be_done"
+                android:textColor="@color/font_color_remind"
+                android:textSize="17sp" />
 
             <ImageView
-                android:layout_marginTop="352dp"
-                android:layout_toEndOf="@id/main_all_wait_text_view"
-                android:background="@mipmap/main3"
                 android:layout_width="8dp"
                 android:layout_height="8dp"
+                android:layout_marginTop="342dp"
+                android:layout_toEndOf="@id/main_all_wait_text_view"
+                android:background="@mipmap/main3"
                 tools:ignore="ContentDescription" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/main_today_recycler_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
                 android:layout_below="@id/main_all_wait_text_view"
                 android:visibility="visible" />
 
@@ -101,5 +105,36 @@
         </RelativeLayout>
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
-    <!--<include layout="@layout/bottom_choose_layout1" />-->
+    <RelativeLayout
+        android:id="@+id/main_activity_bottom_bar"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_alignParentBottom="true"
+        android:paddingTop="15dp"
+        android:paddingHorizontal="45dp"
+        android:background="@mipmap/bottom_bg">
+
+        <ImageView
+            android:layout_width="25dp"
+            android:layout_height="45dp"
+            android:layout_alignParentStart="true"
+            android:background="@mipmap/bottom_ta"
+            android:contentDescription="@string/TODO" />
+
+        <ImageView
+            android:layout_width="25dp"
+            android:layout_height="45dp"
+            android:layout_alignParentEnd="true"
+            android:background="@mipmap/bottom_my"
+            android:contentDescription="@string/TODO" />
+    </RelativeLayout>
+    <ImageView
+        android:layout_marginBottom="30dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:background="@mipmap/bottom_re"
+        android:layout_gravity="center_horizontal"
+        android:layout_width="61dp"
+        android:layout_height="82dp"
+        android:contentDescription="@string/TODO" />
 </RelativeLayout>

@@ -1,4 +1,4 @@
-package com.example.unpigeon.repository.task;
+package com.example.unpigeon.task;
 
 import com.example.unpigeon.repository.local.RecordPieceEntity;
 

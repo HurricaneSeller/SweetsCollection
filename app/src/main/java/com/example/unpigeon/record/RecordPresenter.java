@@ -3,7 +3,7 @@ package com.example.unpigeon.record;
 import android.content.Context;
 
 import com.example.unpigeon.record.local.AudioRecorder;
-import com.example.unpigeon.repository.task.Task;
+import com.example.unpigeon.task.Task;
 import com.example.unpigeon.repository.local.RecordPieceEntity;
 import com.example.unpigeon.utils.Constant;
 
