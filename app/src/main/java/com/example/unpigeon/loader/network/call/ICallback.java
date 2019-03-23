@@ -1,9 +1,9 @@
-package com.example.unpigeon.loader.network;
+package com.example.unpigeon.loader.network.call;
 
 public interface ICallback {
     void onStart();
 
-    void onComplite();
+    void onComplete();
 
     void onError(Exception e);
 

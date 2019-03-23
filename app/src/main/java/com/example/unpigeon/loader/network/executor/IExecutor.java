@@ -1,6 +1,6 @@
 package com.example.unpigeon.loader.network.executor;
 
-import com.example.unpigeon.loader.network.ICallback;
+import com.example.unpigeon.loader.network.call.ICallback;
 import com.example.unpigeon.loader.network.RequestParams;
 
 public interface IExecutor {

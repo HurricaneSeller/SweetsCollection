@@ -1,5 +1,7 @@
 package com.example.unpigeon.loader.network;
 
+import com.example.unpigeon.loader.network.call.ICallback;
+
 import java.io.File;
 import java.nio.charset.Charset;
 import java.util.HashMap;
