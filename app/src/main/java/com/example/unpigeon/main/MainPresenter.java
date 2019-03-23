@@ -4,7 +4,7 @@ import android.content.Context;
 import android.os.Handler;
 import android.os.Message;
 
-import com.example.unpigeon.loader.task.ThreadPool;
+import com.example.unpigeon.repository.task.ThreadPool;
 import com.example.unpigeon.repository.local.RecordPieceDao;
 import com.example.unpigeon.repository.local.RecordPieceDatabase;
 import com.example.unpigeon.repository.local.RecordPieceEntity;

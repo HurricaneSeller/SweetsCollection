@@ -39,7 +39,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         testing();
     }
 
-
     private void hideStatusBar() {
         getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.white));
     }
