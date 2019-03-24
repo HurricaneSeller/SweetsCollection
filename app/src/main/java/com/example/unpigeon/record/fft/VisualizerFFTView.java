@@ -9,8 +9,6 @@ import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
 
-import com.example.unpigeon.R;
-
 import androidx.annotation.Nullable;
 
 public class VisualizerFFTView extends View {
@@ -23,7 +21,6 @@ public class VisualizerFFTView extends View {
 
     public VisualizerFFTView(Context context) {
         super(context);
-        Log.d(TAG, "VisualizerFFTView: ");
         init();
     }
 
@@ -40,6 +37,7 @@ public class VisualizerFFTView extends View {
         mForePaint.setStrokeWidth(8f);
         mForePaint.setAntiAlias(true);
         mForePaint.setColor(Color.rgb(0, 128, 255));
+        setWillNotDraw(false);
     }
 
     public void updateVisualizer(byte[] fft) {
@@ -57,6 +55,10 @@ public class VisualizerFFTView extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
+        drawVisualizer(canvas);
+    }
+
+    private void drawVisualizer(Canvas canvas) {
         if (mBytes == null) {
             return;
         }
@@ -64,7 +66,6 @@ public class VisualizerFFTView extends View {
             mPoints = new float[mBytes.length * 4];
         }
         mRect.set(0, 0, getWidth(), getHeight());
-        //绘制频谱
         final int baseX = mRect.width() / mSpectrumNum;
         final int height = mRect.height();
         for (int i = 0; i < mSpectrumNum; i++) {
@@ -78,5 +79,6 @@ public class VisualizerFFTView extends View {
             mPoints[i * 4 + 3] = height - mBytes[i];
         }
         canvas.drawLines(mPoints, mForePaint);
+
     }
 }

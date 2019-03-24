@@ -13,10 +13,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by HXL on 16/8/11.
- * 用于实现录音   暂停录音
- */
 public class AudioRecorder {
     private static final String TAG = "moanbigking";
     private static AudioRecorder audioRecorder;

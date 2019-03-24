@@ -1,6 +1,9 @@
 package com.example.unpigeon.record;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
+import android.os.Handler;
+import android.os.Message;
 import android.util.Log;
 
 import com.example.unpigeon.record.save.AudioRecorder;
@@ -47,6 +50,7 @@ class RecordPresenter implements RecordContract.Presenter{
     @Override
     public void stopRecord() {
         mAudioRecorder.stopRecord();
+        mAudioRecorder.release();
         mView.popAlertDialog();
     }
 
