@@ -1,4 +1,4 @@
-package com.example.unpigeon.record.view;
+package com.example.unpigeon.record;
 
 import android.animation.ValueAnimator;
 import android.content.Context;

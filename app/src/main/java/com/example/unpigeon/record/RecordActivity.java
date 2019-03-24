@@ -9,7 +9,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.unpigeon.R;
-import com.example.unpigeon.record.local.AudioRecorder;
+import com.example.unpigeon.record.fft.VisualizerFFTView;
+import com.example.unpigeon.record.save.AudioRecorder;
 import com.example.unpigeon.repository.local.RecordPieceEntity;
 import com.example.unpigeon.utils.Constant;
 
@@ -29,6 +30,7 @@ import permissions.dispatcher.RuntimePermissions;
 public class RecordActivity extends AppCompatActivity implements View.OnClickListener, RecordContract.View {
     private Button mControlButton;
     //    private RhythmView mRhythmView;
+    private VisualizerFFTView mVisualizerFFTView;
     private String TAG = "moanbigking";
     private RecordPieceEntity mRecordPieceEntity;
     private TextView mContentView;
@@ -68,6 +70,7 @@ public class RecordActivity extends AppCompatActivity implements View.OnClickLis
         mAudioRecorder = AudioRecorder.getInstance();
         mRecordPresenter = new RecordPresenter(this, mRecordPieceEntity);
         mRecordPresenter.setData();
+        mVisualizerFFTView = new VisualizerFFTView(this);
     }
 
     @Override
@@ -199,6 +202,11 @@ public class RecordActivity extends AppCompatActivity implements View.OnClickLis
     @Override
     public void toast(String text) {
         Toast.makeText(this, text, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void setView(byte[] data) {
+        mVisualizerFFTView.updateVisualizer(data);
     }
 
     @Override

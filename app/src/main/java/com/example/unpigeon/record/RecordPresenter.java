@@ -1,8 +1,10 @@
 package com.example.unpigeon.record;
 
 import android.content.Context;
+import android.util.Log;
 
-import com.example.unpigeon.record.local.AudioRecorder;
+import com.example.unpigeon.record.save.AudioRecorder;
+import com.example.unpigeon.record.save.RecordStreamListener;
 import com.example.unpigeon.task.Task;
 import com.example.unpigeon.repository.local.RecordPieceEntity;
 import com.example.unpigeon.utils.Constant;
@@ -11,6 +13,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 class RecordPresenter implements RecordContract.Presenter{
+    private static final String TAG = "moanbigking";
     private final RecordContract.View mView;
     private final RecordPieceEntity mRecordPieceEntity;
     private AudioRecorder mAudioRecorder;
@@ -32,7 +35,12 @@ class RecordPresenter implements RecordContract.Presenter{
     public void startRecord(Context context) {
         fileName = new SimpleDateFormat("yyyyMMddhhmmss").format(new Date());
         mAudioRecorder.createDefaultAudio(fileName);
-        mAudioRecorder.startRecord(null);
+        mAudioRecorder.startRecord(new RecordStreamListener() {
+            @Override
+            public void recordOfByte(byte[] data, int begin, int end) {
+                mView.setView(data);
+            }
+        });
         mView.toast(Constant.START_RECORD);
     }
 
@@ -45,7 +53,7 @@ class RecordPresenter implements RecordContract.Presenter{
     @Override
     public void createUploadTask() {
         Task task = new Task(mRecordPieceEntity);
-
+        // TODO: 3/24/19 add the left part
     }
 
 

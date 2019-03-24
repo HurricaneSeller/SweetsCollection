@@ -91,12 +91,11 @@
             android:layout_marginStart="40dp"
             android:text="11:22" />
 
-        <com.example.unpigeon.record.view.RhythmView
+        <com.example.unpigeon.record.fft.VisualizerFFTView
             android:id="@+id/activity_record_voice"
             android:layout_width="match_parent"
             android:layout_height="200dp"
-            android:layout_alignParentTop="true"
-            android:background="#000" />
+            android:layout_alignParentTop="true" />
 
         <Button
             android:id="@+id/activity_record_control"

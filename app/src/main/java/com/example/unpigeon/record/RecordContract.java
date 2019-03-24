@@ -16,6 +16,7 @@ public interface RecordContract {
         void onClickAudioOnAskAgain();
         void popAlertDialog();
         void toast(String text);
+        void setView(byte[] data);
     }
     interface Presenter{
         void setData();
