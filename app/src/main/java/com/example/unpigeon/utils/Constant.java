@@ -13,4 +13,6 @@ public class Constant {
     public static final int LOAD_FINISHED = 111;
     public static final int CODE_ERROR = 400;
     public static final int CODE_OK = 200;
+    public static final int REFRESH_TIME = 1;
+    public static final int REFRESH_VIEW = 2;
 }

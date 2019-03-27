@@ -1,18 +1,26 @@
 package com.example.unpigeon.record;
 
 import android.Manifest;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.os.Bundle;
+import android.os.Message;
+import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.BaseRecorder;
+import com.czt.mp3recorder.MP3Recorder;
 import com.example.unpigeon.R;
 import com.example.unpigeon.repository.local.RecordPieceEntity;
 import com.example.unpigeon.utils.Constant;
+import com.shuyu.waveview.AudioPlayer;
 import com.shuyu.waveview.AudioWaveView;
 
 import java.io.IOException;
@@ -40,6 +48,7 @@ public class RecordActivity extends AppCompatActivity implements View.OnClickLis
     private TextView mTitleView;
     private RecordPresenter mRecordPresenter;
     private AudioWaveView mAudioWaveView;
+    private boolean isPlaying = false;
 
 
     @Override
@@ -73,8 +82,12 @@ public class RecordActivity extends AppCompatActivity implements View.OnClickLis
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.activity_record_control:
-                checkPermissions();
-                // TODO: 3/27/19 finish this
+                if (!isPlaying) {
+                    checkPermissions();
+                } else {
+                    mRecordPresenter.stopRecord();
+                }
+                isPlaying = !isPlaying;
                 break;
         }
     }
@@ -181,14 +194,13 @@ public class RecordActivity extends AppCompatActivity implements View.OnClickLis
         dialog.setPositiveButton(Constant.OK, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                finish();
-                // TODO: 3/21/19 update
+                mRecordPresenter.createUploadTask();
             }
         });
         dialog.setNegativeButton("取消", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                // TODO: 3/21/19 save local
+                finish();
             }
         });
         dialog.show();
@@ -200,12 +212,7 @@ public class RecordActivity extends AppCompatActivity implements View.OnClickLis
     }
 
     @Override
-    public void setView(byte[] data) {
-//        mVisualizerFFTView.updateVisualizer(data);
-    }
-
-    @Override
-    public void startView() {
+    public void startWaveView() {
         mAudioWaveView.startView();
         Paint paint = new Paint();
         paint.setColor(Color.GRAY);
@@ -216,13 +223,27 @@ public class RecordActivity extends AppCompatActivity implements View.OnClickLis
     }
 
     @Override
-    public void stopView() {
+    public void stopWaveView() {
         mAudioWaveView.stopView();
     }
 
     @Override
-    public ArrayList<Short> getDataList() {
-        return mAudioWaveView.getRecList();
+    public void setTime(String time) {
+        mTimeView.setText(time);
+    }
+
+    @Override
+    public void setWaveView(BaseRecorder baseRecorder) {
+        mAudioWaveView.setWaveColor(Color.BLACK);
+
+        Paint paint = new Paint();
+        paint.setColor(Color.BLACK);
+        paint.setStrokeWidth(4);
+        mAudioWaveView.setLinePaint(paint);
+        mAudioWaveView.setBaseRecorder(baseRecorder);
+        mAudioWaveView.setEnabled(false);
+
+
     }
 
 
@@ -234,5 +255,12 @@ public class RecordActivity extends AppCompatActivity implements View.OnClickLis
     @Override
     public void setContent(String content) {
         mContentView.setText(content);
+    }
+
+    private int getScreenWidth(Context context) {
+        WindowManager windowManager = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
+        DisplayMetrics outMetrics = new DisplayMetrics();// 创建了一张白纸
+        windowManager.getDefaultDisplay().getMetrics(outMetrics);// 给白纸设置宽高
+        return outMetrics.widthPixels;
     }
 }

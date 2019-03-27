@@ -13,4 +13,5 @@
     <string name="TODO">TODO</string>
     <string name="sample_record_title">任务一 - 上传一段录音</string>
     <string name="sample_record_content">滚滚长江东逝水，浪花淘尽英雄。是非成败转头空。青山依旧在，几度夕阳红。 白发渔樵江渚上，惯看秋月春风。一壶浊酒喜相逢。古今多少事，都付笑谈中。</string>
+    <string name="start_time_init">00:00</string>
 </resources>

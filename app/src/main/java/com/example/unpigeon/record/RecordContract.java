@@ -2,6 +2,8 @@ package com.example.unpigeon.record;
 
 import android.content.Context;
 
+import com.BaseRecorder;
+
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -19,17 +21,16 @@ public interface RecordContract {
         void onClickAudioOnAskAgain();
         void popAlertDialog();
         void toast(String text);
-        void setView(byte[] data);
-
-        void startView();
-        void stopView();
-        ArrayList<Short> getDataList();
+        void startWaveView();
+        void stopWaveView();
+        void setTime(String time);
+        void setWaveView(BaseRecorder baseRecorder);
     }
     interface Presenter{
         void setData();
-        void initAudioRecorder();
         void startRecord(Context context) throws IOException;
         void stopRecord();
         void createUploadTask();
+
     }
 }

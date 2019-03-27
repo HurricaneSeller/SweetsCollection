@@ -123,6 +123,7 @@
             android:contentDescription="@string/TODO" />
 
         <ImageView
+            android:id="@+id/activity_bottom_my_btn"
             android:layout_width="25dp"
             android:layout_height="45dp"
             android:layout_alignParentEnd="true"

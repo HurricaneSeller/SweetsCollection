@@ -6,4 +6,5 @@
     <color name="font_color_main">#4F4B75</color>
     <color name="font_color_remind">#7171AA</color>
     <color name="white">#ffffff</color>
+    <color name="black">#000000</color>
 </resources>

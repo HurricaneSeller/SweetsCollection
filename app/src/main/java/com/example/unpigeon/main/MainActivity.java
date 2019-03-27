@@ -8,9 +8,11 @@ import android.os.Message;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.ImageView;
 
 import com.example.unpigeon.R;
 import com.example.unpigeon.listen.ListenActivity;
+import com.example.unpigeon.login.LoginActivity;
 import com.example.unpigeon.repository.local.RecordPieceEntity;
 import com.example.unpigeon.utils.Constant;
 
@@ -28,6 +30,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private RecyclerView mTodayRecyclerView;
     private RecyclerView mTotalRecyclerView;
     private Button mShowAllButton;
+    private ImageView mMyButton;
     private List<RecordPieceEntity> mRecordPieceEntities;
     private MainPresenter mMainPresenter;
 
@@ -44,6 +47,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mTotalRecyclerView = findViewById(R.id.main_all_recycler_view);
         mShowAllButton = findViewById(R.id.main_all_work_button);
         mShowAllButton.setOnClickListener(this);
+        mMyButton = findViewById(R.id.activity_bottom_my_btn);
+        mMyButton.setOnClickListener(this);
         mMainPresenter = new MainPresenter(this, mHandler);
         mMainPresenter.load(this);
     }
@@ -54,8 +59,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.main_all_work_button:
                 break;
             case R.id.main_record1:
-                Intent intent = new Intent(this, ListenActivity.class);
-                startActivity(intent);
+                Intent listenIntent = new Intent(this, ListenActivity.class);
+                startActivity(listenIntent);
+                break;
+            case R.id.activity_bottom_my_btn:
+                Intent loginIntent = new Intent(this, LoginActivity.class);
+                startActivity(loginIntent);
                 break;
         }
     }
