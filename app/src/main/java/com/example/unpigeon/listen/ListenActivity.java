@@ -36,7 +36,7 @@ public class ListenActivity extends AppCompatActivity {
         ListFragment listFragment = new ListFragment();
         FragmentManager manager = getSupportFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
-        transaction.addToBackStack("first-stack");
+        transaction.addToBackStack("listen-stack");
         transaction.replace(R.id.listen_main_frame_layout, listFragment);
         transaction.commit();
     }

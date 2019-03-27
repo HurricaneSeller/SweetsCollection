@@ -51,6 +51,7 @@
             android:textSize="20sp" />
 
         <EditText
+            android:id="@+id/edt_fra_login_username"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="2"
@@ -77,6 +78,7 @@
             android:textSize="20sp" />
 
         <EditText
+            android:id="@+id/edt_fra_login_password"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="2"
@@ -109,6 +111,7 @@
             android:orientation="horizontal">
 
             <EditText
+                android:id="@+id/edt_fra_login_check_number"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="4"
@@ -125,6 +128,7 @@
     </LinearLayout>
 
     <ImageView
+        android:id="@+id/img_btn_fra_login"
         android:layout_width="350dp"
         android:layout_height="100dp"
         android:layout_alignParentBottom="true"
@@ -133,6 +137,7 @@
         android:background="@mipmap/btn_login" />
 
     <Button
+        android:id="@+id/btn_fra_register"
         android:textColor="@color/font_color_main"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="20dp"
