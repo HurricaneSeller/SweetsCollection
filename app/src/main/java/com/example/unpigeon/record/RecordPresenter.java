@@ -25,7 +25,7 @@ class RecordPresenter implements RecordContract.Presenter {
     private static final String TAG = "moanbigking";
     private final RecordContract.View mView;
     private final RecordPieceEntity mRecordPieceEntity;
-//    private AudioRecord mAudioRecord;
+    //    private AudioRecord mAudioRecord;
     private AudioPlayer mAudioPlayer;
     private MP3Recorder mMP3Recorder;
     private boolean mIsRecord = false;
@@ -52,8 +52,9 @@ class RecordPresenter implements RecordContract.Presenter {
 
     }
 
+    @SuppressLint("HandlerLeak")
     @Override
-    public void startRecord(Context context) throws IOException {
+    public void startRecord(final Context context) throws IOException {
         filePath = FileUtils.getAppPath();
         Log.d(TAG, "startRecord: " + filePath);
         File file = new File(filePath);
@@ -67,8 +68,44 @@ class RecordPresenter implements RecordContract.Presenter {
         int offset = dip2px(context, 1);
         filePath = FileUtils.getAppPath() + UUID.randomUUID().toString() + ".mp3";
         mMP3Recorder = new MP3Recorder(new File(filePath));
+        mAudioPlayer = new AudioPlayer(context, new Handler() {
+            @Override
+            public void handleMessage(Message msg) {
+                switch (msg.what) {
+                    case AudioPlayer.HANDLER_CUR_TIME://更新的时间
+                        curPosition = (int) msg.obj;
+                        Log.d(TAG, "handleMessage: 1" + toTime(curPosition) + " / " + toTime(duration));
+//                    playText.setText(toTime(curPosition) + " / " + toTime(duration));
+                        break;
+                    case AudioPlayer.HANDLER_COMPLETE://播放结束
+                        Log.d(TAG, "handleMessage: 2");
+//                    playText.setText(" ");
+                        mIsPlay = false;
+                        break;
+                    case AudioPlayer.HANDLER_PREPARED://播放开始
+                        duration = (int) msg.obj;
+                        Log.d(TAG, "handleMessage: 3" + toTime(curPosition) + " / " + toTime(duration));
+//                    playText.setText(toTime(curPosition) + " / " + toTime(duration));
+                        break;
+                    case AudioPlayer.HANDLER_ERROR://播放错误
+                        Log.d(TAG, "handleMessage: 4");
+//                    resolveResetPlay();
+                        break;
+
+                }
+            }
+        });
         int size = getScreenWidth(context) / offset;//控件默认的间隔是1
-        mMP3Recorder.setErrorHandler(mHandler);
+        mMP3Recorder.setErrorHandler(new Handler() {
+            @Override
+            public void handleMessage(Message msg) {
+                super.handleMessage(msg);
+                if (msg.what == MP3Recorder.ERROR_TYPE) {
+                    Toast.makeText(context, "没有麦克风权限", Toast.LENGTH_SHORT).show();
+                    resolveError();
+                }
+            }
+        });
 
         mMP3Recorder.start();
         mView.startView();
@@ -99,31 +136,6 @@ class RecordPresenter implements RecordContract.Presenter {
         // TODO: 3/24/19 add the left part
     }
 
-    @SuppressLint("HandlerLeak")
-    private Handler mHandler = new Handler() {
-        @Override
-        public void handleMessage(Message msg) {
-            switch (msg.what) {
-                case AudioPlayer.HANDLER_CUR_TIME://更新的时间
-                    curPosition = (int) msg.obj;
-                    Log.d(TAG, "handleMessage: " + toTime(curPosition) + " / " + toTime(duration));
-//                    playText.setText(toTime(curPosition) + " / " + toTime(duration));
-                    break;
-                case AudioPlayer.HANDLER_COMPLETE://播放结束
-//                    playText.setText(" ");
-                    mIsPlay = false;
-                    break;
-                case AudioPlayer.HANDLER_PREPARED://播放开始
-                    duration = (int) msg.obj;
-                    Log.d(TAG, "handleMessage: " + toTime(curPosition) + " / " + toTime(duration));
-//                    playText.setText(toTime(curPosition) + " / " + toTime(duration));
-                    break;
-                case AudioPlayer.HANDLER_ERROR://播放错误
-//                    resolveResetPlay();
-                    break;
-            }
-        }
-    };
 
     /**
      * 录音异常
@@ -167,6 +179,7 @@ class RecordPresenter implements RecordContract.Presenter {
 //        wavePlay.setEnabled(false);
 //        reset.setEnabled(false);
     }
+
     private void resolveNormalUI() {
         // TODO: 3/27/19  fix this
         //        record.setEnabled(true);
@@ -176,6 +189,7 @@ class RecordPresenter implements RecordContract.Presenter {
 //        wavePlay.setEnabled(false);
 //        reset.setEnabled(false);
     }
+
     private void resolveStopUI() {
 //        record.setEnabled(true);
 //        stop.setEnabled(false);
@@ -188,7 +202,7 @@ class RecordPresenter implements RecordContract.Presenter {
     /**
      * dip转为PX
      */
-    private int dip2px(Context context, float dipValue) {
+    public static int dip2px(Context context, float dipValue) {
         float fontScale = context.getResources().getDisplayMetrics().density;
         return (int) (dipValue * fontScale + 0.5f);
     }

@@ -2,8 +2,9 @@ package com.example.unpigeon.record;
 
 import android.Manifest;
 import android.content.DialogInterface;
+import android.graphics.Color;
+import android.graphics.Paint;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -27,11 +28,11 @@ import permissions.dispatcher.OnShowRationale;
 import permissions.dispatcher.PermissionRequest;
 import permissions.dispatcher.RuntimePermissions;
 
+import static com.example.unpigeon.record.RecordPresenter.dip2px;
+
 @RuntimePermissions
 public class RecordActivity extends AppCompatActivity implements View.OnClickListener, RecordContract.View {
     private Button mControlButton;
-    //    private RhythmView mRhythmView;
-//    private VisualizerFFTView mVisualizerFFTView;
     private String TAG = "moanbigking";
     private RecordPieceEntity mRecordPieceEntity;
     private TextView mContentView;
@@ -63,8 +64,6 @@ public class RecordActivity extends AppCompatActivity implements View.OnClickLis
         mTimeView = findViewById(R.id.activity_record_time);
         mControlButton.setOnClickListener(this);
         mRecordPieceEntity = (RecordPieceEntity) getIntent().getSerializableExtra(Constant.CHOSEN_TASK);
-//        mContentView.setText(mRecordPieceEntity.getContent());
-//        mAudioRecorder = AudioRecorder.getInstance();
         mRecordPresenter = new RecordPresenter(this, mRecordPieceEntity);
         mRecordPresenter.setData();
         mAudioWaveView = new AudioWaveView(this, null);
@@ -74,13 +73,8 @@ public class RecordActivity extends AppCompatActivity implements View.OnClickLis
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.activity_record_control:
-//                if (mAudioRecorder.getStatus() == AudioRecorder.Status.STATUS_NO_READY) {
-//                    RecordActivityPermissionsDispatcher.askAudioPermissionWithPermissionCheck(this);
-//                    RecordActivityPermissionsDispatcher.askStoragePermissionWithPermissionCheck(this);
-                    checkPermissions();
-//                } else {
-//                    mRecordPresenter.stopRecord();
-//                }
+                checkPermissions();
+                // TODO: 3/27/19 finish this
                 break;
         }
     }
@@ -213,6 +207,12 @@ public class RecordActivity extends AppCompatActivity implements View.OnClickLis
     @Override
     public void startView() {
         mAudioWaveView.startView();
+        Paint paint = new Paint();
+        paint.setColor(Color.GRAY);
+        paint.setStrokeWidth(4);
+        mAudioWaveView.setLinePaint(paint);
+        int offset = dip2px(this, 1);
+        mAudioWaveView.setOffset(offset);
     }
 
     @Override
