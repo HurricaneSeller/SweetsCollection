@@ -5,7 +5,6 @@ import android.content.Context;
 import com.BaseRecorder;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 import permissions.dispatcher.PermissionRequest;
 

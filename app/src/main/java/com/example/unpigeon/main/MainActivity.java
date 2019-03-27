@@ -6,13 +6,12 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
 
 import com.example.unpigeon.R;
 import com.example.unpigeon.listen.ListenActivity;
-import com.example.unpigeon.login.LoginActivity;
+import com.example.unpigeon.user.UserActivity;
 import com.example.unpigeon.repository.local.RecordPieceEntity;
 import com.example.unpigeon.utils.Constant;
 
@@ -20,7 +19,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -63,7 +61,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(listenIntent);
                 break;
             case R.id.activity_bottom_my_btn:
-                Intent loginIntent = new Intent(this, LoginActivity.class);
+                Intent loginIntent = new Intent(this, UserActivity.class);
                 startActivity(loginIntent);
                 break;
         }

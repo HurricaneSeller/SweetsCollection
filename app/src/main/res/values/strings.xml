@@ -14,4 +14,17 @@
     <string name="sample_record_title">任务一 - 上传一段录音</string>
     <string name="sample_record_content">滚滚长江东逝水，浪花淘尽英雄。是非成败转头空。青山依旧在，几度夕阳红。 白发渔樵江渚上，惯看秋月春风。一壶浊酒喜相逢。古今多少事，都付笑谈中。</string>
     <string name="start_time_init">00:00</string>
+    <string name="login">登录</string>
+    <string name="input_password">输入密码</string>
+    <string name="input_username">输入用户名</string>
+    <string name="username">用户名</string>
+    <string name="password">密码</string>
+    <string name="check_number">验证码</string>
+    <string name="press_button_to_change">点击验证码可更换</string>
+    <string name="register_new_one">新用户？注册一个新帐号</string>
+    <string name="register">注册</string>
+    <string name="email">邮箱</string>
+    <string name="input_email">输入邮箱</string>
+    <string name="get_check_num">获取验证码</string>
+    <string name="register_using_phone">用手机注册</string>
 </resources>

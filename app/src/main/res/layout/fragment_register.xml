@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".user.register.RegisterFragment">
+
+    <RelativeLayout
+        android:id="@+id/fra_reg_top_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="20dp">
+
+        <Button
+            android:layout_width="15dp"
+            android:layout_height="23dp"
+            android:layout_marginStart="20dp"
+            android:background="@mipmap/back" />
+
+        <TextView
+            android:id="@+id/activity_record_text"
+            android:layout_width="55dp"
+            android:layout_height="28dp"
+            android:layout_centerHorizontal="true"
+            android:gravity="center"
+            android:text="@string/register"
+            android:textColor="@color/font_color_main"
+            android:textSize="23sp" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/fra_reg_username"
+        android:layout_width="350dp"
+        android:layout_height="80dp"
+        android:layout_below="@id/fra_reg_top_bar"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="40dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:text="@string/username"
+            android:textColor="@color/font_color_main"
+            android:textSize="20sp" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="2"
+            android:hint="@string/input_username"
+            android:textSize="21sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/fra_reg_password"
+        android:layout_width="350dp"
+        android:layout_height="80dp"
+        android:layout_below="@id/fra_reg_username"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="5dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:text="@string/email"
+            android:textColor="@color/font_color_main"
+            android:textSize="20sp" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="2"
+            android:hint="@string/input_email"
+            android:textSize="21sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/fra_login_check"
+        android:layout_width="350dp"
+        android:layout_height="80dp"
+        android:layout_below="@id/fra_reg_password"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="5dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:text="@string/check_number"
+            android:textColor="@color/font_color_main"
+            android:textSize="20sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1.4"
+            android:orientation="horizontal">
+
+            <EditText
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
+                android:hint="@string/press_button_to_change"
+                android:textSize="21sp" />
+
+            <Button
+                android:text="@string/get_check_num"
+                android:background="@android:color/transparent"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+        </LinearLayout>
+    </LinearLayout>
+    <ImageView
+        android:layout_width="350dp"
+        android:layout_height="100dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="40dp"
+        android:background="@mipmap/btn_reg" />
+
+    <Button
+        android:textColor="@color/font_color_main"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="20dp"
+        android:layout_centerHorizontal="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:background="@android:color/transparent"
+        android:text="@string/register_using_phone"
+        android:textSize="15sp" />
+</RelativeLayout>

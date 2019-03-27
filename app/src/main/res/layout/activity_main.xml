@@ -20,7 +20,7 @@
                 android:layout_width="108dp"
                 android:layout_height="26dp"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="50dp"
+                android:layout_marginTop="40dp"
                 android:gravity="center"
                 android:text="@string/today_task"
                 android:textColor="@color/font_color_main"
@@ -30,10 +30,9 @@
                 android:layout_width="26dp"
                 android:layout_height="26dp"
                 android:layout_alignParentEnd="true"
-                android:layout_marginTop="50dp"
+                android:layout_marginTop="40dp"
                 android:layout_marginEnd="35dp"
-                android:background="@mipmap/main2"
-                tools:ignore="ContentDescription" />
+                android:background="@mipmap/main2" />
 
             <ImageView
                 android:id="@+id/main_all_pic"
@@ -42,8 +41,7 @@
                 android:layout_below="@id/main_all_today_text_view"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="30dp"
-                android:background="@mipmap/today_task"
-                tools:ignore="ContentDescription" />
+                android:background="@mipmap/today_task" />
 
             <TextView
                 android:id="@+id/main_all_wait_text_view"
