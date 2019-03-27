@@ -2,6 +2,9 @@ package com.example.unpigeon.record;
 
 import android.content.Context;
 
+import java.io.IOException;
+import java.util.ArrayList;
+
 import permissions.dispatcher.PermissionRequest;
 
 public interface RecordContract {
@@ -17,10 +20,15 @@ public interface RecordContract {
         void popAlertDialog();
         void toast(String text);
         void setView(byte[] data);
+
+        void startView();
+        void stopView();
+        ArrayList<Short> getDataList();
     }
     interface Presenter{
         void setData();
-        void startRecord(Context context);
+        void initAudioRecorder();
+        void startRecord(Context context) throws IOException;
         void stopRecord();
         void createUploadTask();
     }

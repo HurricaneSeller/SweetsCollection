@@ -3,22 +3,23 @@ package com.example.unpigeon.record;
 import android.Manifest;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.unpigeon.R;
-import com.example.unpigeon.record.fft.VisualizerFFTView;
-import com.example.unpigeon.record.save.AudioRecorder;
 import com.example.unpigeon.repository.local.RecordPieceEntity;
 import com.example.unpigeon.utils.Constant;
+import com.shuyu.waveview.AudioWaveView;
 
+import java.io.IOException;
+import java.util.ArrayList;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
 import permissions.dispatcher.NeedsPermission;
 import permissions.dispatcher.OnNeverAskAgain;
 import permissions.dispatcher.OnPermissionDenied;
@@ -30,27 +31,23 @@ import permissions.dispatcher.RuntimePermissions;
 public class RecordActivity extends AppCompatActivity implements View.OnClickListener, RecordContract.View {
     private Button mControlButton;
     //    private RhythmView mRhythmView;
-    private VisualizerFFTView mVisualizerFFTView;
+//    private VisualizerFFTView mVisualizerFFTView;
     private String TAG = "moanbigking";
     private RecordPieceEntity mRecordPieceEntity;
     private TextView mContentView;
     private TextView mTimeView;
     private TextView mTitleView;
-    private AudioRecorder mAudioRecorder;
     private RecordPresenter mRecordPresenter;
+    private AudioWaveView mAudioWaveView;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_record);
-        hideStatusBar();
         init();
     }
 
-    private void hideStatusBar() {
-        getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.white));
-    }
 
     @Override
     public void onBackPressed() {
@@ -67,23 +64,23 @@ public class RecordActivity extends AppCompatActivity implements View.OnClickLis
         mControlButton.setOnClickListener(this);
         mRecordPieceEntity = (RecordPieceEntity) getIntent().getSerializableExtra(Constant.CHOSEN_TASK);
 //        mContentView.setText(mRecordPieceEntity.getContent());
-        mAudioRecorder = AudioRecorder.getInstance();
+//        mAudioRecorder = AudioRecorder.getInstance();
         mRecordPresenter = new RecordPresenter(this, mRecordPieceEntity);
         mRecordPresenter.setData();
-        mVisualizerFFTView = new VisualizerFFTView(this);
+        mAudioWaveView = new AudioWaveView(this, null);
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.activity_record_control:
-                if (mAudioRecorder.getStatus() == AudioRecorder.Status.STATUS_NO_READY) {
-                    RecordActivityPermissionsDispatcher.askAudioPermissionWithPermissionCheck(this);
-                    RecordActivityPermissionsDispatcher.askStoragePermissionWithPermissionCheck(this);
+//                if (mAudioRecorder.getStatus() == AudioRecorder.Status.STATUS_NO_READY) {
+//                    RecordActivityPermissionsDispatcher.askAudioPermissionWithPermissionCheck(this);
+//                    RecordActivityPermissionsDispatcher.askStoragePermissionWithPermissionCheck(this);
                     checkPermissions();
-                } else {
-                    mRecordPresenter.stopRecord();
-                }
+//                } else {
+//                    mRecordPresenter.stopRecord();
+//                }
                 break;
         }
     }
@@ -100,7 +97,11 @@ public class RecordActivity extends AppCompatActivity implements View.OnClickLis
 
     @NeedsPermission(Manifest.permission.RECORD_AUDIO)
     void askAudioPermission() {
-        mRecordPresenter.startRecord(this);
+        try {
+            mRecordPresenter.startRecord(this);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -206,8 +207,24 @@ public class RecordActivity extends AppCompatActivity implements View.OnClickLis
 
     @Override
     public void setView(byte[] data) {
-        mVisualizerFFTView.updateVisualizer(data);
+//        mVisualizerFFTView.updateVisualizer(data);
     }
+
+    @Override
+    public void startView() {
+        mAudioWaveView.startView();
+    }
+
+    @Override
+    public void stopView() {
+        mAudioWaveView.stopView();
+    }
+
+    @Override
+    public ArrayList<Short> getDataList() {
+        return mAudioWaveView.getRecList();
+    }
+
 
     @Override
     public void setTitle(String title) {

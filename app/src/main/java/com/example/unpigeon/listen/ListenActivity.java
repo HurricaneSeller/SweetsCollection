@@ -26,18 +26,11 @@ public class ListenActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_listen);
-        hideActionbar();
         setListFragment();
         registerReceiver(mBroadcastReceiver, new IntentFilter("change-to-list"));
     }
 
 
-    private void hideActionbar() {
-        ActionBar actionBar = getSupportActionBar();
-        if (actionBar != null) {
-            actionBar.hide();
-        }
-    }
 
     private void setListFragment() {
         ListFragment listFragment = new ListFragment();

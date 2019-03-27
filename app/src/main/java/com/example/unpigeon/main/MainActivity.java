@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 
 import com.example.unpigeon.R;
@@ -35,12 +36,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         init();
-        hideStatusBar();
         testing();
-    }
-
-    private void hideStatusBar() {
-        getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.white));
     }
 
     private void init() {
