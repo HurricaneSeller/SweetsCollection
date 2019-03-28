@@ -52,4 +52,9 @@ public class UserActivity extends AppCompatActivity {
         transaction.commit();
     }
 
+    @Override
+    public void onBackPressed() {
+        finish();
+    }
 }
+

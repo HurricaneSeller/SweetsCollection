@@ -48,6 +48,7 @@
             android:textSize="20sp" />
 
         <EditText
+            android:id="@+id/fra_reg_username_edt"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="2"
@@ -74,6 +75,7 @@
             android:textSize="20sp" />
 
         <EditText
+            android:id="@+id/fra_reg_password_edt"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="2"

@@ -43,8 +43,8 @@ public class RegisterFragment extends Fragment implements UserContract.RegisterV
     }
 
     private void init(View root) {
-          mEditUsername = root.findViewById(R.id.fra_reg_username);
-          mEdtEmail = root.findViewById(R.id.fra_reg_password);
+          mEditUsername = root.findViewById(R.id.fra_reg_username_edt);
+          mEdtEmail = root.findViewById(R.id.fra_reg_password_edt);
           mEdtCheckNum = root.findViewById(R.id.fra_reg_check_num);
           mBtnGetCheckNum = root.findViewById(R.id.fra_reg_get_check_num);
           mBtnGetCheckNum.setOnClickListener(this);
