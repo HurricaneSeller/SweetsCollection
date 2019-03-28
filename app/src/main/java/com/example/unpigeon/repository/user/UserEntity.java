@@ -1,30 +1,20 @@
 package com.example.unpigeon.repository.user;
 
-import androidx.room.ColumnInfo;
-import androidx.room.Entity;
-import androidx.room.PrimaryKey;
+import java.io.Serializable;
 
-@Entity
-public class UserEntity {
-    @PrimaryKey
+public class UserEntity implements Serializable {
     private int uid;
 
-    @ColumnInfo(name = "user_name")
     private String name;
 
-    @ColumnInfo(name = "user_password")
     private String password;
 
-    @ColumnInfo(name = "user_email")
     private String email;
 
-    @ColumnInfo(name = "user_tel")
     private String telephone;
 
-    @ColumnInfo(name = "user_login")
     private boolean isLogin;
 
-    @ColumnInfo(name = "token")
     private String token;
 
     public String getToken() {

@@ -189,7 +189,7 @@ public class RecordActivity extends AppCompatActivity implements View.OnClickLis
         dialog.setPositiveButton(Constant.OK, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                mRecordPresenter.createUploadTask();
+                mRecordPresenter.createUploadTask(RecordActivity.this);
             }
         });
         dialog.setNegativeButton("取消", new DialogInterface.OnClickListener() {
