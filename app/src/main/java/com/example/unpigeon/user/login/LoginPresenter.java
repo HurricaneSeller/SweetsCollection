@@ -7,6 +7,7 @@ import com.example.unpigeon.network.NetworkUtils;
 import com.example.unpigeon.network.RequestParams;
 import com.example.unpigeon.network.call.ICallback;
 import com.example.unpigeon.network.executor.factory.OkHttpExecutorFactory;
+import com.example.unpigeon.user.Constant;
 import com.example.unpigeon.user.UserContract;
 
 import org.json.JSONException;
@@ -14,7 +15,7 @@ import org.json.JSONObject;
 
 public class LoginPresenter implements UserContract.LoginPresenter {
     private final UserContract.LoginView mLoginView;
-    private static final String ADDRESS_POST = "http://206.189.42.213:8888/user/login";
+    private static final String ADDRESS_POST_LOGIN = "http://206.189.42.213:8888/user/login";
     private static final String TAG = "moanbigking";
 
     public LoginPresenter(UserContract.LoginView loginView) {
@@ -28,7 +29,7 @@ public class LoginPresenter implements UserContract.LoginPresenter {
         String username = mLoginView.getUsername();
         String password = mLoginView.getPassword();
 //        String checkNum = mLoginView.getCheckNumber(); maybe used later
-        RequestParams requestParams = new RequestParams.Builder().url(ADDRESS_POST).method(Method.POST)
+        RequestParams requestParams = new RequestParams.Builder().url(ADDRESS_POST_LOGIN).method(Method.POST)
                 .header(Constant.Http.HEADER_CONTENT_TYPE_KEY, Constant.Http.HEADER_CONTENT_TYPE_VALUE)
                 .requestParams(Constant.Http.PARAMS_KEY_USERNAME, username)
                 .requestParams(Constant.Http.PARAMS_KEY_PASSWORD, password)

@@ -1,16 +1,12 @@
 package com.example.unpigeon.user;
 
 import android.os.Bundle;
-import android.text.TextUtils;
 
 import com.example.unpigeon.R;
 import com.example.unpigeon.user.login.LoginFragment;
 import com.example.unpigeon.user.login.LoginPresenter;
 import com.example.unpigeon.user.register.RegisterFragment;
 import com.example.unpigeon.user.register.RegisterPresenter;
-
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
@@ -27,16 +23,16 @@ public class UserActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user);
-        setResisterFragment();
+        setLoginFragment();
         loadPresenter();
     }
 
-    private void setResisterFragment() {
+    private void setLoginFragment() {
         mLoginFragment = new LoginFragment();
         mRegisterFragment = new RegisterFragment();
         FragmentManager manager = getSupportFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
-        transaction.addToBackStack("listen-stack");
+        transaction.addToBackStack("user-stack");
         transaction.replace(R.id.user_activity_frame_layout, mLoginFragment);
         transaction.commit();
     }
@@ -48,5 +44,12 @@ public class UserActivity extends AppCompatActivity {
         mRegisterFragment.setPresenter(mRegisterPresenter);
     }
 
+    public void setRegisterFragment() {
+        FragmentManager manager = getSupportFragmentManager();
+        FragmentTransaction transaction = manager.beginTransaction();
+        transaction.addToBackStack("user-stack");
+        transaction.replace(R.id.user_activity_frame_layout, mRegisterFragment);
+        transaction.commit();
+    }
 
 }

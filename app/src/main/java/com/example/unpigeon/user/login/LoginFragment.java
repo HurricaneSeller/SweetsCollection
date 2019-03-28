@@ -1,6 +1,7 @@
 package com.example.unpigeon.user.login;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -15,6 +16,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.unpigeon.R;
+import com.example.unpigeon.user.UserActivity;
 import com.example.unpigeon.user.UserContract;
 import com.example.unpigeon.utils.Utils;
 
@@ -65,8 +67,10 @@ public class LoginFragment extends Fragment implements UserContract.LoginView, V
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.img_btn_fra_login:
+                mLoginPresenter.performLogin();
                 break;
             case R.id.btn_fra_register:
+                ((UserActivity) Objects.requireNonNull(getActivity())).setRegisterFragment();
                 break;
 
         }

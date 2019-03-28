@@ -15,10 +15,15 @@ public interface UserContract {
     }
 
     interface RegisterPresenter {
-
+        void performRegister();
     }
 
     interface RegisterView {
-
+        String getUsername();
+        String getPassword();
+        String getCheckNumber();
+        void toast(String content);
+        void onRegisterSuccess();
+        void onRegisterDefeat();
     }
 }
