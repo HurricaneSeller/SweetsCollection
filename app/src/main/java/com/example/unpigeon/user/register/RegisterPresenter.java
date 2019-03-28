@@ -4,8 +4,8 @@ import com.example.unpigeon.network.Method;
 import com.example.unpigeon.network.NetworkUtils;
 import com.example.unpigeon.network.RequestParams;
 import com.example.unpigeon.network.call.ICallback;
-import com.example.unpigeon.user.Constant;
 import com.example.unpigeon.user.UserContract;
+import com.example.unpigeon.utils.Constant;
 
 import org.json.JSONException;
 import org.json.JSONObject;

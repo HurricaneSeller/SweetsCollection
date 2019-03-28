@@ -9,7 +9,7 @@ import android.widget.TextView;
 
 import com.example.unpigeon.R;
 import com.example.unpigeon.record.RecordActivity;
-import com.example.unpigeon.repository.local.RecordPieceEntity;
+import com.example.unpigeon.repository.record_piece.RecordPieceEntity;
 import com.example.unpigeon.utils.Constant;
 
 import java.util.ArrayList;

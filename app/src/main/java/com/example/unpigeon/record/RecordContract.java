@@ -29,7 +29,7 @@ public interface RecordContract {
         void setData();
         void startRecord(Context context) throws IOException;
         void stopRecord();
-        void createUploadTask();
+        void createUploadTask(Context context);
 
     }
 }

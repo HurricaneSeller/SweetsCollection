@@ -2,17 +2,14 @@ package com.example.unpigeon.record;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Handler;
 import android.os.Message;
-import android.util.DisplayMetrics;
-import android.util.Log;
-import android.view.WindowManager;
 
 import com.czt.mp3recorder.MP3Recorder;
-import com.example.unpigeon.repository.local.RecordPieceEntity;
-import com.example.unpigeon.task.Task;
+import com.example.unpigeon.repository.record_piece.RecordPieceEntity;
+import com.example.unpigeon.user.UserActivity;
 import com.example.unpigeon.utils.Constant;
-import com.shuyu.waveview.AudioPlayer;
 import com.shuyu.waveview.FileUtils;
 
 import java.io.File;
@@ -24,13 +21,14 @@ import java.util.UUID;
 
 class RecordPresenter implements RecordContract.Presenter, IControl {
     private static final String TAG = "moanbigking";
+    public static final String ADDRESS_COMMIT_POST = "http://206.189.42.213:8888/user/login";
     private final RecordContract.View mView;
     private final RecordPieceEntity mRecordPieceEntity;
     private MP3Recorder mMP3Recorder;
     private String filePath;
     private Timer mTimer;
     private TimerTask mTimeTask;
-    private TimerTask mViewTask;
+    private boolean isLogin = true;
 
     RecordPresenter(RecordContract.View view, RecordPieceEntity recordPieceEntity) {
         mView = view;
@@ -110,13 +108,15 @@ class RecordPresenter implements RecordContract.Presenter, IControl {
     }
 
     @Override
-    public void createUploadTask() {
-        Task task = new Task(mRecordPieceEntity);
+    public void createUploadTask(Context context) {
+        if (isLogin) {
 
+        } else {
+            // switch to login activity
+            Intent intent = new Intent(context, UserActivity.class);
+            context.startActivity(intent);
+        }
     }
-
-
-
 
     /**
      * dip to PX

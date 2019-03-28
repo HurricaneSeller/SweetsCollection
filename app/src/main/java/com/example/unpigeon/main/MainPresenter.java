@@ -5,9 +5,9 @@ import android.os.Handler;
 import android.os.Message;
 
 import com.example.unpigeon.task.ThreadPool;
-import com.example.unpigeon.repository.local.RecordPieceDao;
-import com.example.unpigeon.repository.local.RecordPieceDatabase;
-import com.example.unpigeon.repository.local.RecordPieceEntity;
+import com.example.unpigeon.repository.record_piece.RecordPieceDao;
+import com.example.unpigeon.repository.record_piece.RecordPieceDatabase;
+import com.example.unpigeon.repository.record_piece.RecordPieceEntity;
 import com.example.unpigeon.utils.Constant;
 
 import java.util.ArrayList;

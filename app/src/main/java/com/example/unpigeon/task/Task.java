@@ -1,6 +1,6 @@
 package com.example.unpigeon.task;
 
-import com.example.unpigeon.repository.local.RecordPieceEntity;
+import com.example.unpigeon.repository.record_piece.RecordPieceEntity;
 
 import androidx.annotation.NonNull;
 

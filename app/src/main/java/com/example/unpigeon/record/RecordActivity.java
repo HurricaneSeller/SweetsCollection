@@ -6,9 +6,7 @@ import android.content.DialogInterface;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.os.Bundle;
-import android.os.Message;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -16,15 +14,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.BaseRecorder;
-import com.czt.mp3recorder.MP3Recorder;
 import com.example.unpigeon.R;
-import com.example.unpigeon.repository.local.RecordPieceEntity;
+import com.example.unpigeon.repository.record_piece.RecordPieceEntity;
 import com.example.unpigeon.utils.Constant;
-import com.shuyu.waveview.AudioPlayer;
 import com.shuyu.waveview.AudioWaveView;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
