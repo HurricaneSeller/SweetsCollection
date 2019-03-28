@@ -9,6 +9,9 @@ public interface UserContract {
         String getUsername();
         String getPassword();
         String getCheckNumber();
+        void toast(String content);
+        void onLoginDefeat();
+        void onLoginSuccess();
     }
 
     interface RegisterPresenter {

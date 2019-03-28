@@ -12,10 +12,13 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.example.unpigeon.R;
 import com.example.unpigeon.user.UserContract;
 import com.example.unpigeon.utils.Utils;
+
+import java.util.Objects;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -83,5 +86,22 @@ public class LoginFragment extends Fragment implements UserContract.LoginView, V
     @Override
     public String getCheckNumber() {
         return mEditCheckNumber.getText().toString();
+    }
+
+    @Override
+    public void toast(String content) {
+        Toast.makeText(getActivity(), content, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onLoginDefeat() {
+        mEdtPassword.setText("");
+        mEdtUsername.setText("");
+        mEditCheckNumber.setText("");
+    }
+
+    @Override
+    public void onLoginSuccess() {
+        Objects.requireNonNull(getActivity()).finish();
     }
 }
