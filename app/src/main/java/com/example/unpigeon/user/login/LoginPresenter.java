@@ -7,6 +7,7 @@ import com.example.unpigeon.network.NetworkUtils;
 import com.example.unpigeon.network.RequestParams;
 import com.example.unpigeon.network.call.ICallback;
 import com.example.unpigeon.network.executor.factory.OkHttpExecutorFactory;
+import com.example.unpigeon.repository.user.UserEntity;
 import com.example.unpigeon.user.UserContract;
 import com.example.unpigeon.utils.Constant;
 

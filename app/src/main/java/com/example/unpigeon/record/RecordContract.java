@@ -30,6 +30,6 @@ public interface RecordContract {
         void startRecord(Context context) throws IOException;
         void stopRecord();
         void createUploadTask(Context context);
-
+        void getUser();
     }
 }

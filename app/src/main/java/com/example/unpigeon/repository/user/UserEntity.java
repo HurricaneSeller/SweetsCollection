@@ -24,6 +24,17 @@ public class UserEntity {
     @ColumnInfo(name = "user_login")
     private boolean isLogin;
 
+    @ColumnInfo(name = "token")
+    private String token;
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
+    }
+
     public int getUid() {
         return uid;
     }
@@ -72,4 +83,42 @@ public class UserEntity {
         isLogin = login;
     }
 
+    public UserEntity(String name, String password, String email, String telephone, boolean isLogin) {
+        this.name = name;
+        this.password = password;
+        this.email = email;
+        this.telephone = telephone;
+        this.isLogin = isLogin;
+    }
+
+    public static class Builder {
+        private String name;
+        private String password;
+        private String email;
+        private String telephone;
+
+        public Builder name(String name) {
+            this.name = name;
+            return this;
+        }
+
+        public Builder password(String password) {
+            this.password = password;
+            return this;
+        }
+
+        public Builder email(String email) {
+            this.email = email;
+            return this;
+        }
+
+        public Builder telephone(String telephone) {
+            this.telephone = telephone;
+            return this;
+        }
+
+        public UserEntity build() {
+            return new UserEntity(name, password, email, telephone, true);
+        }
+    }
 }

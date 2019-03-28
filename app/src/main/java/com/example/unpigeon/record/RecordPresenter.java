@@ -8,6 +8,7 @@ import android.os.Message;
 
 import com.czt.mp3recorder.MP3Recorder;
 import com.example.unpigeon.repository.record_piece.RecordPieceEntity;
+import com.example.unpigeon.repository.user.UserEntity;
 import com.example.unpigeon.user.UserActivity;
 import com.example.unpigeon.utils.Constant;
 import com.shuyu.waveview.FileUtils;
@@ -29,6 +30,7 @@ class RecordPresenter implements RecordContract.Presenter, IControl {
     private Timer mTimer;
     private TimerTask mTimeTask;
     private boolean isLogin = true;
+    private UserEntity mUserEntity;
 
     RecordPresenter(RecordContract.View view, RecordPieceEntity recordPieceEntity) {
         mView = view;
@@ -110,12 +112,19 @@ class RecordPresenter implements RecordContract.Presenter, IControl {
     @Override
     public void createUploadTask(Context context) {
         if (isLogin) {
-
+            int id = mRecordPieceEntity.getUid();
+            // TODO: 3/28/19
         } else {
             // switch to login activity
             Intent intent = new Intent(context, UserActivity.class);
             context.startActivity(intent);
         }
+    }
+
+    @Override
+    public void getUser() {
+        mUserEntity = new UserEntity.Builder().name("sample").password("sample").build();
+        // TODO: 3/28/19
     }
 
     /**

@@ -1,10 +1,6 @@
 package com.example.unpigeon.repository.user;
 
 import android.content.Context;
-import android.service.autofill.UserData;
-
-import com.example.unpigeon.repository.record_piece.RecordPieceDao;
-import com.example.unpigeon.repository.record_piece.RecordPieceDatabase;
 
 import androidx.room.Database;
 import androidx.room.Room;
